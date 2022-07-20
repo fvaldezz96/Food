@@ -1,0 +1,85 @@
+
+            -------SEUDOCODIGO PARA LOS PEDIDOS DE LA API Y DB--------- 
+/////////////////////////
+Primero antes que nada hay que modularizar las funciones 
+de las rutas , asi es menos logica la que iria dentro de las 
+rutas a la hora de llamas la propiedad de la api y db .
+//////////////////////////
+
+1: dividir los componentes por dieta y receta , dejo el index
+solo para al final poder renderizar solo dos rutas .
+index va a contener variables que traigan los archivos 
+recipe y diet.
+
+2: en el componente recetas van las rutas que buscan todas las 
+recetas , el nombre , id, creado en la base de datos .
+eje: router.get('/', getRecipes) .
+
+3: en el componente de las recetas la function que busca por las 
+dietas existentes .
+
+4: en una carpeta aparte de la de los componentes de recipes y diet 
+crear una carpeta que contenga las funciones que hacen los llamados a 
+la api o db .
+ Estas mismas contrendran el destructurin de diet de la db y recipe .
+
+               -------------funciones de llamados-------------
+                          --------DIET--------
+5: La funcion de diet pueden ser async await , pero la idea es tambien 
+practicar con fech y otras maneras por si se piden otros codigos en la 
+correccion .
+ En todos los casos es buena practica meter todo dentro de un try..catch 
+eso seria una buena practica , en este mismo en su scope debo ingresar la
+logica en el caso de buscar las dietas en la api . 
+el seudo codigo debe guardarse en una variable el link con las 100
+recetas marcadas en el https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&addRecipeInformation=true&number=100
+seguido del map que me va a traer e.diet usando un metodo .flat() https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/flat
+seguido de un return que guarde una nueva instancia de tipo valor https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Set
+en un array mapeado con el parametro objero name .
+ Luego esta funcion la guardo en una variable para poder hacer el concat a la base de dato
+Para poder mapear la base de datos me guardo el codigo en una variable async que resiva req y res por parametro
+ y  try...catch  con el bulkcreate => https://medium.com/@hz.bird55/using-sequelize-bulkcreate-method-with-mysql-database-1ebd1bae2109
+ que va a pasar por parametro la variable que guarda la variable que 
+ esta guardando la funcion buscar en la api ajjajaj alto enrrosque . 
+Por ultimo un findAll para traerme todo del componente diet . "NOTA: no te olvides de exportar la funcion contenoda
+de toda la logica."
+         
+                      --------------RECIPES----------------
+6:  Importar los modulos de la base de datos para poder traerme con findall todas las cosas
+Una ves variable  contenedora de la arrow function , es este archivo me mapeo todos los datos que 
+piden en el readme desde name a steps y los retorno x2 contando al db aplicando findall() a recipes.
+debo usar la propiedad include , atributes .
+ 
+7: En la funcion que contacatena la busqueda por nombre , tiene que haber un concat de forma 
+manual o de forma auto con "concat" , de forma manual seria trayendome todo lo anterior "..." y filtrando el 
+name usando toLoweCase(), NOTA: descarta al opcion de error primero o ultimo pero para saber si 
+tiene o no nombre que buscan .
+
+8: En el caso de buscar por puedo usar metodos para traer por req.params el id con destructurin 
+y usan condicionales para preguntar si viene por la api o por db.
+
+9: La constante que guarda el arrow funcion async usando un try..catch puedo guardarme en una variable
+los datos que entran por body y preguntar si no tiene alguno de estos no lo cree , si tiene todos 
+crea en la tabla recipe la receta especificada con el metodo create .
+ Para buscar solo el nombre de la dieta podes traerlo con el metodo finOne() https://es.stackoverflow.com/questions/62899/usando-findone-y-findonebyid-con-peticiones-http-nodejs-mongoose
+NOTA: el findOne va dentro del map . 
+
+
+  Al final del las funciones solo por probar codigo y demas , se puede crear un metodo que borre y  
+  otro que use metodo upDate https://www.google.com/search?q=metodo+upDate()&oq=metodo+upDate()+&aqs=chrome..69i57.4714j0j4&sourceid=chrome&ie=UTF-8
+  para buscar por clave valor la recet .
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
