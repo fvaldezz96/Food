@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getAllDiet } = require('../controllers/diet.controllers');
+const { getAllDiet } = require('../controllers/Diet.controller.js');
 
 const router = Router();
 

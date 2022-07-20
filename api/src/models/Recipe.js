@@ -25,6 +25,10 @@ module.exports = (sequelize) => {
     healthScore: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    image:{
+      type: DataTypes.STRING,
+      allowNull:false
     }
   });
 };
