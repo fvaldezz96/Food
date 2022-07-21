@@ -1,10 +1,10 @@
 
             -------SEUDOCODIGO PARA LOS PEDIDOS DE LA API Y DB--------- 
-/////////////////////////
+/////////////////////////////////////////////////
 Primero antes que nada hay que modularizar las funciones 
 de las rutas , asi es menos logica la que iria dentro de las 
 rutas a la hora de llamas la propiedad de la api y db .
-//////////////////////////
+//////////////////////////////////////////////////
 
 1: dividir los componentes por dieta y receta , dejo el index
 solo para al final poder renderizar solo dos rutas .
@@ -55,19 +55,29 @@ sin importar de donde venga el dato , esto me va a permitir en otras funciones p
  me puedo guardar las dos funciones anteriores en variables distintas , funciones auto invocadas "()" , despues me traigo
  todo lo que tengas y las devuelvo en una nueva variabl usando el [...ejemplo,...ejemplo2]; 
 
-8: En el caso de buscar por puedo usar metodos para traer por req.params el id con destructurin 
-y usan condicionales para preguntar si viene por la api o por db.
+8: Funcion buscar por query el name , esta funcion me esta pintando hacer destructurin de name por una req de query para traerme 
+name , luego me traigo en dos variables los datos consumis de la api y de la db , para luego en otra variable 
+traerme todo lo que contienen con [...ejemplo,...ejemplo] y filtrar name con toLowerCase(), si encuentra name return el name de la 
+receta , si no el mensaje de error .
 
-9: La constante que guarda el arrow funcion async usando un try..catch puedo guardarme en una variable
-los datos que entran por body y preguntar si no tiene alguno de estos no lo cree , si tiene todos 
-crea en la tabla recipe la receta especificada con el metodo create .
- Para buscar solo el nombre de la dieta podes traerlo con el metodo finOne() https://es.stackoverflow.com/questions/62899/usando-findone-y-findonebyid-con-peticiones-http-nodejs-mongoose
-NOTA: el findOne va dentro del map . 
+9: Funcion buscar por params el id , en esta funcion puedo hacer lo mismo que la anterior  pero necesito validad si tiene o no id 
+en caso de que tenga busco primero por la variable que guarda los datos de la api y no tiene o no , el mismo caso es para la base de datos 
+ pero tomaria un else 
+
+10: Funcion crear receta , voy a empesar por hacer el destructurin de los datos que necesita si o si traerse de l body para cerar la receta 
+ primero necesito validar si falta algun dato para devolver el mensaje de faltan datos , una ves que la validacion faltan datos ya esta des-
+ cartada puedo proceder a crear en la tabla la receta "obvio siempre de forma async...await" , pasando por obj los datos necesarios para crear
+ la receta ,a todo esto esta logica va dentro de una variable .  
+  En la variable anterior en donde tengo los datos necesarios la voy colgar un toque para poder mapear los nombres de las dietas , usando un .map()
+dentro del mismo voy a usar un .findOne() async...await para encontrar el {where:{name:..}} de la dieta . 
+una ves terminado el mapeo , en otra varible aparte voy a usar promise.All("variable anterior") para crear la promesa .
+  En esta ultima instancia uso .addDiets("ultima variable") para agregar la promesa a mi metodo create de la primera variable , asi se cerraria el ciclo.
+   
 
 
-  Al final del las funciones solo por probar codigo y demas , se puede crear un metodo que borre y  
+  NOTA: "Al final del las funciones solo por probar codigo y demas , se puede crear un metodo que borre y  
   otro que use metodo upDate https://www.google.com/search?q=metodo+upDate()&oq=metodo+upDate()+&aqs=chrome..69i57.4714j0j4&sourceid=chrome&ie=UTF-8
-  para buscar por clave valor la recet .
+  para buscar por clave valor la recet ."
 
  
 

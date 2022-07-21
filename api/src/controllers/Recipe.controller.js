@@ -38,7 +38,7 @@ const allDb = async () => {
 }
 
 //en esta funcion haciendo el contac puedo consumir datos de al api y db 
-const getRecipesandDb = (req, res) => {
+const getApiandDb = (req, res) => {
    try {
       const allNameRecipe = await allRecipes();
       const allNameDb = await allDb();
@@ -49,11 +49,58 @@ const getRecipesandDb = (req, res) => {
    }
 }
 
+//funcio  para encontrar por name la receta 
+const getNames = async (req, res) => {
+   try {
+      const { name } = req.query;
+      const allNamesRecetsApi = await allRecipes();
+      const allNamesRecetsDb = await allDb();                                                           //tengo que estudiar la propiedad icludes          
+      const nameEncontrado = [...allNamesRecetsApi, ...allNamesRecetsDb].filter((e) => e.title.toLowerCase().includes(name.toLowerCase()));
+      !nameEncontrado.length ? res.send('Nombre no encontrado!') : res.send(nameEncontrado);
+   } catch (error) {
+      console.log(error)
+   }
+};
+
+//funcion para encontrar por id la receta
+const getId = async (req, res) => {
+   try {
+      const { id } = req.params;
+      if (/^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i.test(id)) {
+         const idRecipesApi = await allRecipes();
+         const dataApi = idRecipesApi.filter((e) => e.id === Number(id));
+         return res.send(dataApi);
+      } else {
+         const idRecipesDb = await allDb();
+         const dataDb = idRecipesDb.filter((e) => e.id === id)
+         return res.send(dataDb)
+      }
+   } catch (error) {
+      console.log(error)
+   }
+};
+
+//funcion para crear la receta desde el formulario .
+const createRecipe = async (req, res) => {
+   try {
+      const { name, summary, healthScore, steps, diets } = req.body
+      if (!name || !summary) res.send('Faltan datos');
+      const createRecipe = await Recipe.create({ name, summary, healthScore, steps, diets });
+      const dataDiet = await diets.map(async (e) => await Diet.findOne({ where: { name: e } }));
+      const promise = await Promise.all(dataDiet);
+      createRecipe.addDiets(promise);
+      res.send(createRecipe);
+   } catch (error) {
+      res.send('No pudimos crear su receta')
+   }
+};
+
 
 
 
 module.exports = {
-   allRecipes,
-   allDb,
-   getRecipesandDb
+   getApiandDb,
+   getNames,
+   getId,
+   createRecipe
 }
