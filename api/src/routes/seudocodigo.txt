@@ -45,15 +45,15 @@ Por ultimo un findAll para traerme todo del componente diet . "NOTA: no te olvid
 de toda la logica."
          
                       --------------RECIPES----------------
-6:  Importar los modulos de la base de datos para poder traerme con findall todas las cosas
-Una ves variable  contenedora de la arrow function , es este archivo me mapeo todos los datos que 
-piden en el readme desde name a steps y los retorno x2 contando al db aplicando findall() a recipes.
-debo usar la propiedad include , atributes .
+6: Necesito dos function para poder consumir y hacer los pedidos a la db y api , una de estas funciones
+tiene que consumir de la api los datos que pide el readme , estoy pensando en usar un map  , luego necesito una 
+que haga lo mismo pero que consuma del modulo de recipe , tambien  haciendo un map . 
  
-7: En la funcion que contacatena la busqueda por nombre , tiene que haber un concat de forma 
-manual o de forma auto con "concat" , de forma manual seria trayendome todo lo anterior "..." y filtrando el 
-name usando toLoweCase(), NOTA: descarta al opcion de error primero o ultimo pero para saber si 
-tiene o no nombre que buscan .
+7: Segundo paso necesito una function para concatenar ambas funciones asi puedo hacer pedidos desde la api o db 
+sin importar de donde venga el dato , esto me va a permitir en otras funciones poder hacer las request . 
+ pensaba en una function que haga el concat de forma manual sin unas el metodo concat de la libreria  ,
+ me puedo guardar las dos funciones anteriores en variables distintas , funciones auto invocadas "()" , despues me traigo
+ todo lo que tengas y las devuelvo en una nueva variabl usando el [...ejemplo,...ejemplo2]; 
 
 8: En el caso de buscar por puedo usar metodos para traer por req.params el id con destructurin 
 y usan condicionales para preguntar si viene por la api o por db.
