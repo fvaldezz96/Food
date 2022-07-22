@@ -24,7 +24,7 @@ la api o db .
  Estas mismas contrendran el destructurin de diet de la db y recipe .
 
                -------------funciones de llamados-------------
-                          --------DIET--------
+                                --------DIET--------
 5: La funcion de diet pueden ser async await , pero la idea es tambien 
 practicar con fech y otras maneras por si se piden otros codigos en la 
 correccion .
@@ -79,10 +79,14 @@ una ves terminado el mapeo , en otra varible aparte voy a usar promise.All("vari
   otro que use metodo upDate https://www.google.com/search?q=metodo+upDate()&oq=metodo+upDate()+&aqs=chrome..69i57.4714j0j4&sourceid=chrome&ie=UTF-8
   para buscar por clave valor la recet ."
 
- 
+  -------------------REDUX, conecciones con react y back-end-----------------
+ 1: Primero instale librerias que me faltaban ("axios" , "redux-devtools-extension") ,luego
+ cree la carpeta de redux con los archivos que conectan las acciones con react y demas .
 
-
-
+  Mi idea de entrada es hacer react y despues hacer las acciones y los pedidos a loa api  o db ,
+  capas solo a la db pero eso lo voy a ver en el camino , mientras tanto cree achivos conectores .
+   Estos son actions , index, reducer , store , el store es el encargado de la coneccion entre react y redux
+  l aidea es crear todos los componentes primero e ir renderizando en pantalla lo que voy a ver .
 
 
 
