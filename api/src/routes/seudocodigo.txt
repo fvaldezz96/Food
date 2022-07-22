@@ -88,6 +88,15 @@ una ves terminado el mapeo , en otra varible aparte voy a usar promise.All("vari
    Estos son actions , index, reducer , store , el store es el encargado de la coneccion entre react y redux
   l aidea es crear todos los componentes primero e ir renderizando en pantalla lo que voy a ver .
 
+2:Crear componentes , en la carpeta redux ("actions, index, reducer,store") , luego en una carpeta componente
+("card,createRecete,detailRecete,Home, Landing,NavBar,Paginado,SearchBar") , la carpeta style con sus respectivos 
+archivos . 
+ Despues de tener listos los componentes , toca crear las funciones en los archivos de react o como sea , tambien 
+ se puede empezar por el redux ("desde las acciones") .
+
+ 3:En los coponentes app o en el punto anterior tambien puedo conectar react con redux y los pedidos al back 
+caso contrario en el archivo app hay que importar ("BrowserRouter","Route" ,"Switch") , en el div contenedor 
+global tengo que envolver en un tag("<BrowserRouter>")
 
 
 
