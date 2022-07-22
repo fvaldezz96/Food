@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    step: {
+    steps: {
       type: DataTypes.ARRAY(DataTypes.JSON),
       allowNull: false
     },
@@ -24,11 +24,12 @@ module.exports = (sequelize) => {
     },
     healthScore: {
       type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    image:{
-      type: DataTypes.STRING,
-      allowNull:false
+      // allowNull: false
     }
-  });
+      // },
+    // image:{
+    //   type: DataTypes.STRING,
+    //   // allowNull:false
+    // }
+  },{timestamps: false});
 };

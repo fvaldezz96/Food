@@ -3,11 +3,11 @@ const { Recipe, Diet } = require('../db');
 
 const allRecipes = async () => {
    try {
-      const typeRecipes = await (axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&addRecipeInformation=true&number=100`)).data.result;
+      const typeRecipes = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&addRecipeInformation=true&number=100`)).data.results;
       const mapeoRecipes = typeRecipes.map((e) => ({
          id: e.id,
          name: e.name,
-         step: e.step,
+         steps: e.analyzedInstructions[0]?.steps.map(e => ({ number: e.number, step: e.step })),
          summary: e.summary,
          healthScore: e.healthScore,
          image: e.image
@@ -20,16 +20,16 @@ const allRecipes = async () => {
 
 const allDb = async () => {
    try {
-      /* Obtener todas las recetas de la base de datos e incluir el nombre de la dieta. */
+      /* Obtener todas las recetas de la base de datos e incluir el nombre de la dietsa. */
       const db = await Recipe.findAll({ include: { model: Diet, attributes: ['name'] } });
       const allData = db.map((e) => ({
          id: e.id,
          name: e.name,
-         step: e.step,
          summary: e.summary,
          healthScore: e.healthScore,
          image: e.image,
-         diet: e.diet.map(e => e.name)
+         diets: e.diets.map(e => e.name),
+         steps: e.steps
       }));
       return allData;
    } catch (error) {
@@ -38,7 +38,7 @@ const allDb = async () => {
 }
 
 //en esta funcion haciendo el contac puedo consumir datos de al api y db 
-const getApiandDb = (req, res) => {
+const getApiandDb = async (req, res) => {
    try {
       const allNameRecipe = await allRecipes();
       const allNameDb = await allDb();
@@ -83,20 +83,20 @@ const getId = async (req, res) => {
 //funcion para crear la receta desde el formulario .
 const createRecipe = async (req, res) => {
    try {
-      const { name, summary, healthScore, steps, diets } = req.body
-      if (!name || !summary) res.send('Faltan datos');
-      const createRecipe = await Recipe.create({ name, summary, healthScore, steps, diets });
-      const dataDiet = await diets.map(async (e) => await Diet.findOne({ where: { name: e } }));
-      const promise = await Promise.all(dataDiet);
-      createRecipe.addDiets(promise);
-      res.send(createRecipe);
+      let { name, summary, healthScore, image, steps, diets } = req.body
+      if (!name || !summary) return res.send('Faltan datos')
+      let newRecipe = await Recipe.create({ name, summary, healthScore, image, steps })
+      let dietsPromise = await diets.map(async (e) => await Diet.findOne({ where: { name: e } }))
+      let dietsFinal = await Promise.all(dietsPromise)
+      newRecipe.addDiets(dietsFinal)
+
+      res.send(newRecipe)
+
    } catch (error) {
-      res.send('No pudimos crear su receta')
+      console.log(error)
+      res.send("It haven't created")
    }
 };
-
-
-
 
 module.exports = {
    getApiandDb,

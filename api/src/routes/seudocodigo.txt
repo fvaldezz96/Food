@@ -72,7 +72,7 @@ en caso de que tenga busco primero por la variable que guarda los datos de la ap
 dentro del mismo voy a usar un .findOne() async...await para encontrar el {where:{name:..}} de la dieta . 
 una ves terminado el mapeo , en otra varible aparte voy a usar promise.All("variable anterior") para crear la promesa .
   En esta ultima instancia uso .addDiets("ultima variable") para agregar la promesa a mi metodo create de la primera variable , asi se cerraria el ciclo.
-   
+  
 
 
   NOTA: "Al final del las funciones solo por probar codigo y demas , se puede crear un metodo que borre y  
