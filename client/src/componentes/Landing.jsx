@@ -7,6 +7,7 @@ export default function Landing() {
       <div>
         <h1>Bienvenido</h1>
         <Link to={'/home'}>
+         <button>INICIO</button>
         </Link>
       </div>
    )

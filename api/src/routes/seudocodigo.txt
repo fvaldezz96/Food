@@ -99,6 +99,10 @@ caso contrario en el archivo app hay que importar ("BrowserRouter","Route" ,"Swi
 global tengo que envolver en un tag("<BrowserRouter>")
 
 
+1 el index de redux , hago la funcion que trae con el router.get los datos de la api 
+2 completar el reducer de redux con el initialState 
+3 
+
 
 
 
