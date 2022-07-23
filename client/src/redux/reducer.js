@@ -1,6 +1,10 @@
 
-const initialState = {
-   recetas : [] 
+import {
+   GET_RECIPES
+} from './actions.js';
+
+let initialState = {
+   recetas: []
 }
 
 function rootReducer(state = initialState, action) {
@@ -11,6 +15,8 @@ function rootReducer(state = initialState, action) {
             ...state,
             recetas: action.payload
          }
+      default:
+         return state;
    }
 }
 export default rootReducer;

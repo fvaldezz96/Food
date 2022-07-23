@@ -42,8 +42,7 @@ const getApiandDb = async (req, res) => {
    try {
       const allNameRecipe = await allRecipes();
       const allNameDb = await allDb();
-      const allNames = [...allNameRecipe, ...allNameDb];
-      res.send(allNames);
+      res.send([...allNameRecipe, ...allNameDb]);
    } catch (error) {
       console.log(error)
    }

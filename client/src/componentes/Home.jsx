@@ -10,17 +10,22 @@ import { NavBar } from './NavBar';
 import { CreateRecipe } from './CreateRecipe';
 import { DetailRecipe } from './DetailRecipe';
 
+import {
+  
+} from '../redux/reducer';
+
 export const Home = () => {
-  const create = CreateRecipe();
+  // const create = CreateRecipe();
   const dispatch = useDispatch();
-  const allRecipes = useSelector((state) => state.recetas)
+  const allRecipe = useSelector((state) => state.recetas);
+  console.log(allRecipe)
 
   useEffect(() => {
     dispatch(getRecipes())
   }, []); //paso el array basio por que no depende de nada!  
-
+  //  console.log(getRecipes)
   function handleClick(e) {
-    e.preventDefault;
+    e.preventDefault();
     dispatch(getRecipes())
   }
 
@@ -28,11 +33,13 @@ export const Home = () => {
   return (
     <div>
       <div>
-        <SearchBar/>
+        <SearchBar />
       </div>
-      {/* <Link to='/createRecipe'>Crear receta</Link> */}
+      {/* <Link to='/createRecipe'>
+        <button onClick=""></button>
+      </Link> */}
       <h1>Todas las recetas</h1>
-      {/* <button onClick={create}></button> */}
+
       <button onClick={(e) => { handleClick(e) }}>
         actualizar
       </button>
@@ -44,8 +51,14 @@ export const Home = () => {
       </div>
       <div>
         {
-          allRecipes && allRecipes.map((e) => {
-            <Card name={e.name} image={e.image} diets={e.diets} />
+          allRecipe?.map((e) => {
+            return (
+              <fragment>
+                <Link to={'/home/' + e.id}>
+                  <Card name={e.name} image={e.image} diets={e.diets} key={e.id} />
+                </Link>
+              </fragment>
+            )
           })
         }
       </div>
