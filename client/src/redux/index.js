@@ -10,7 +10,7 @@ export function getRecipes() {
       /* Una variable que almacena los datos de la API. */
    }
    return dispatch({
-      type: GET_RECIPES,
+      type: "GET_RECIPES",
       /* Una constante que se utiliza para identificar la acción. */
       payload: recipesData.data
       /* `payload` son los datos que se envían al reducer. */

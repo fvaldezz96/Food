@@ -1,6 +1,6 @@
 
 const initialState = {
-   // recetas = [] 
+   recetas : [] 
 }
 
 function rootReducer(state = initialState, action) {

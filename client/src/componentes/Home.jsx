@@ -3,8 +3,15 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRecipes } from '../redux/index';
 import { Link } from 'redux-devtools-extension';
+import { Card } from './Card';
+import { SearchBar } from './SearchBar';
+import { Paginado } from './Paginado';
+import { NavBar } from './NavBar';
+import { CreateRecipe } from './CreateRecipe';
+import { DetailRecipe } from './DetailRecipe';
 
 export const Home = () => {
+  const create = CreateRecipe();
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recetas)
 
@@ -20,21 +27,27 @@ export const Home = () => {
 
   return (
     <div>
-      <Link to='/createRecipe'>Crear receta</Link>
+      <div>
+        <SearchBar/>
+      </div>
+      {/* <Link to='/createRecipe'>Crear receta</Link> */}
       <h1>Todas las recetas</h1>
+      {/* <button onClick={create}></button> */}
       <button onClick={(e) => { handleClick(e) }}>
         actualizar
       </button>
       <div>
-         <select name="" id="">
-          <option value="">filtrar por dieta</option>
-          <option value="asc">A-Z</option>
-          <option value="desc">Z-A</option>
-          <option value="">Nivel de comida saludable</option>
-         </select>
-        <div>
-           {/*aca va el paginado*/}
-          </div> 
+        <NavBar />
+      </div>
+      <div>
+        <Paginado />
+      </div>
+      <div>
+        {
+          allRecipes && allRecipes.map((e) => {
+            <Card name={e.name} image={e.image} diets={e.diets} />
+          })
+        }
       </div>
     </div>
   )
