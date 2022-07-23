@@ -22,6 +22,7 @@ const allDb = async () => {
    try {
       /* Obtener todas las recetas de la base de datos e incluir el nombre de la dietsa. */
       const db = await Recipe.findAll({ include: { model: Diet, attributes: ['name'] } });
+      /* Incluido el modelo Dieta y solo el nombre del atributo. */
       const allData = db.map((e) => ({
          id: e.id,
          name: e.name,
@@ -52,6 +53,8 @@ const getApiandDb = async (req, res) => {
 const getNames = async (req, res) => {
    try {
       const { name } = req.query;
+      /* `req.query` es una propiedad del objeto de solicitud que se utiliza para
+      obtener la cadena de consulta de la URL de solicitud. */
       const allNamesRecetsApi = await allRecipes();
       const allNamesRecetsDb = await allDb();                                                           //tengo que estudiar la propiedad icludes          
       const nameEncontrado = [...allNamesRecetsApi, ...allNamesRecetsDb].filter((e) => e.title.toLowerCase().includes(name.toLowerCase()));

@@ -17,12 +17,13 @@ import {
 export const Home = () => {
   // const create = CreateRecipe();
   const dispatch = useDispatch();
+  /* Obtener el estado de la tienda redux. */
   const allRecipe = useSelector((state) => state.recetas);
-  console.log(allRecipe)
+  // console.log(allRecipe)
 
   useEffect(() => {
     dispatch(getRecipes())
-  }, []); //paso el array basio por que no depende de nada!  
+  }, [dispatch]); //paso el array basio por que no depende de nada!  
   //  console.log(getRecipes)
   function handleClick(e) {
     e.preventDefault();
@@ -54,9 +55,10 @@ export const Home = () => {
           allRecipe?.map((e) => {
             return (
               <fragment>
-                <Link to={'/home/' + e.id}>
+              { /* Creación de un enlace a la página de detalles de la receta. */}
+                {/* <Link to={'/home/' + e.id}> */}
                   <Card name={e.name} image={e.image} diets={e.diets} key={e.id} />
-                </Link>
+                {/* </Link> */}
               </fragment>
             )
           })

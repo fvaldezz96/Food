@@ -4,7 +4,8 @@ import {
 } from './actions.js';
 
 let initialState = {
-   recetas: []
+   recetas: [],
+   allRecetas: []
 }
 
 function rootReducer(state = initialState, action) {
@@ -13,7 +14,9 @@ function rootReducer(state = initialState, action) {
       case GET_RECIPES:
          return {
             ...state,
-            recetas: action.payload
+            recetas: action.payload,
+            allRecetas: action.payload
+
          }
       default:
          return state;
