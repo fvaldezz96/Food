@@ -28,7 +28,8 @@ const allDb = async () => {
          summary: e.summary,
          healthScore: e.healthScore,
          image: e.image,
-         diets: e.diets.map(e => e.name),
+         diets:e.diets.map(e => e.name),
+          /* Asignación de la matriz de dietas a una matriz de nombres. */
          steps: e.steps
       }));
       return allData;
@@ -105,3 +106,20 @@ module.exports = {
    getId,
    createRecipe
 }
+
+
+
+// const allApi = async (req, res) => {
+//    try {
+//       const datos = (axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&addRecipeInformation=true&number=100`)).data.result;
+//       const datosDieta = datos.map((e) => e.diets).flat();
+//       /* Devolviendo una matriz de objetos con la propiedad de nombre. */
+//       return [...new Set(datosDieta)].map((e) => ({ name: e }))
+//    } catch (error) {
+//       res.status(404).send(error)
+//    }
+//    res.status(404).send(datosDieta);
+// }
+//    let arrayApiDiets = allApi;
+
+

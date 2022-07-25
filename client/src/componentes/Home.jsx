@@ -1,15 +1,21 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipes, filterByDieta } from '../redux/index';
 import { Link } from 'redux-devtools-extension';
 import { Card } from './Card';
 import { SearchBar } from './SearchBar';
 import { Paginado } from './Paginado';
 import { NavBar } from './NavBar';
 import { CreateRecipe } from './CreateRecipe';
-import { DetailRecipe } from './DetailRecipe';
+// import { DetailRecipe } from './DetailRecipe';
 
+import {
+  getRecipes,
+  filterByDieta,
+  filterOrder,
+  filterCreateRecipe,
+  filterHealthScore
+} from '../redux/index';
 
 
 export const Home = () => {
@@ -27,20 +33,40 @@ export const Home = () => {
     indexEnd
     //toma el indice del primero y del ultimo personaje.
   );
+
+  const [order, setOrder] = useState("");
+
   //esta me va a ayudar al renderisado .
   const page = (np) => {
     setCurrentPage(np)
   }
 
-  function handleFilterDiet(e) {
+  const handleFilterDiet = (e) => {
     dispatch(filterByDieta(e.target.value))
     setCurrentPage(1);
+    setOrder(e.target.value);
+  }
+  const handleFilterOrder = (e) => {
+    dispatch(filterOrder(e.target.value))
+    setCurrentPage(1);
+    setOrder(e.target.value);
+  }
+  const handleFilterCreate = (e) => {
+    dispatch(filterCreateRecipe(e.target.value));
+    setCurrentPage(1);
+    setOrder(e.target.value);
   }
 
+  const handleHealthScore = (e) => {
+    dispatch(filterHealthScore(e.target.value));
+    setCurrentPage(1);
+    setOrder(e.target.value);
+  }
   //  console.log(getRecipes)
   function handleClick(e) {
     e.preventDefault();
     dispatch(getRecipes())
+    // setOrder();
   }
 
   useEffect(() => {
@@ -51,7 +77,7 @@ export const Home = () => {
   return (
     <div>
       <div>
-        <SearchBar />
+        <SearchBar/>
       </div>
       <h1>Todas las recetas</h1>
       <button onClick={(e) => { handleClick(e) }}>
@@ -60,6 +86,9 @@ export const Home = () => {
       <div>
         <NavBar
           handleFilterDiet={handleFilterDiet}
+          handleFilterOrder={handleFilterOrder}
+          handleFilterCreate={handleFilterCreate}
+          handleHealthScore={handleHealthScore}
         />
       </div>
       <div>
@@ -71,7 +100,7 @@ export const Home = () => {
       </div>
       <div>
         {
-          currentRecipe && currentRecipe.map((e, index) => {
+          currentRecipe?.map((e, index) => {
             return (
               <div key={index}>
                 { /* Creación de un enlace a la página de detalles de la receta. */}
