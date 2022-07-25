@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipes } from '../redux/index';
+import { getRecipes, filterByDieta } from '../redux/index';
 import { Link } from 'redux-devtools-extension';
 import { Card } from './Card';
 import { SearchBar } from './SearchBar';
@@ -10,56 +10,79 @@ import { NavBar } from './NavBar';
 import { CreateRecipe } from './CreateRecipe';
 import { DetailRecipe } from './DetailRecipe';
 
-import {
-  
-} from '../redux/reducer';
+
 
 export const Home = () => {
   // const create = CreateRecipe();
   const dispatch = useDispatch();
-  /* Obtener el estado de la tienda redux. */
+  /* Obtener el estado de la tienda redux.osea trae las recetas */
   const allRecipe = useSelector((state) => state.recetas);
   // console.log(allRecipe)
+  const [currentPage, setCurrentPage] = useState(1);//va a empezar en uno 
+  const [currentRecipePage, setCurrentRecipePage] = useState(10);//recetas por apginas
+  const indexEnd = currentPage * currentRecipePage;
+  const indexFirst = indexEnd - currentRecipePage;
+  const currentRecipe = allRecipe.slice(
+    indexFirst,
+    indexEnd
+    //toma el indice del primero y del ultimo personaje.
+  );
+  //esta me va a ayudar al renderisado .
+  const page = (np) => {
+    setCurrentPage(np)
+  }
 
-  useEffect(() => {
-    dispatch(getRecipes())
-  }, [dispatch]); //paso el array basio por que no depende de nada!  
+  function handleFilterDiet(e) {
+    dispatch(filterByDieta(e.target.value))
+    setCurrentPage(1);
+  }
+
   //  console.log(getRecipes)
   function handleClick(e) {
     e.preventDefault();
     dispatch(getRecipes())
   }
 
+  useEffect(() => {
+    dispatch(getRecipes());
+    dispatch(filterByDieta());
+  }, [dispatch]); //paso el array basio por que no depende de nada!  
 
   return (
     <div>
       <div>
         <SearchBar />
       </div>
-      {/* <Link to='/createRecipe'>
-        <button onClick=""></button>
-      </Link> */}
       <h1>Todas las recetas</h1>
-
       <button onClick={(e) => { handleClick(e) }}>
         actualizar
       </button>
       <div>
-        <NavBar />
+        <NavBar
+          handleFilterDiet={handleFilterDiet}
+        />
       </div>
       <div>
-        <Paginado />
+        <Paginado
+          currentRecipePage={currentRecipePage}
+          allRecipe={allRecipe.length}
+          page={page}
+        />
       </div>
       <div>
         {
-          allRecipe?.map((e) => {
+          currentRecipe && currentRecipe.map((e, index) => {
             return (
-              <fragment>
-              { /* Creación de un enlace a la página de detalles de la receta. */}
-                {/* <Link to={'/home/' + e.id}> */}
-                  <Card name={e.name} image={e.image} diets={e.diets} key={e.id} />
+              <div key={index}>
+                { /* Creación de un enlace a la página de detalles de la receta. */}
+                {/* <Link to={`/home/${e.id}`}> */}
+                <Card
+                  name={e.name}
+                  image={e.image}
+                  diets={e.diets}
+                />
                 {/* </Link> */}
-              </fragment>
+              </div>
             )
           })
         }

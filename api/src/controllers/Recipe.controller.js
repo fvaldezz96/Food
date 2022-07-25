@@ -2,20 +2,19 @@ const axios = require('axios');
 const { Recipe, Diet } = require('../db');
 
 const allRecipes = async () => {
-   try {
+   
       const typeRecipes = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&addRecipeInformation=true&number=100`)).data.results;
       const mapeoRecipes = typeRecipes.map((e) => ({
          id: e.id,
-         name: e.name,
+         name: e.sourceName,
          steps: e.analyzedInstructions[0]?.steps.map(e => ({ number: e.number, step: e.step })),
          summary: e.summary,
          healthScore: e.healthScore,
+         diets: e.diets,
          image: e.image
       }))
       return mapeoRecipes;
-   } catch (error) {
-      console.log(error)
-   }
+
 }
 
 const allDb = async () => {

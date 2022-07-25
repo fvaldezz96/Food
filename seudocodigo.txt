@@ -99,9 +99,20 @@ caso contrario en el archivo app hay que importar ("BrowserRouter","Route" ,"Swi
 global tengo que envolver en un tag("<BrowserRouter>")
 
 
-1 el index de redux , hago la funcion que trae con el router.get los datos de la api 
-2 completar el reducer de redux con el initialState 
-3 
+1: el index de redux , hago la funcion que trae con el router.get los datos de la api 
+2: importo las acciones primero ("GET_RECIPES")
+3: completar el reducer de redux con el initialState con dos propiedades de obj 
+una que sea para traer las recetas y otro para mandar los pedidos de todas las recetas 
+junto con las que crea el cliente . 
+4: empiezo con la funcion "rootReducer" con dos parametros (state= initialState,action) en esta 
+ funciones por lo generar se usa el switch..case para preguntar , si el caso es GET_RECIPES 
+ retorna todo el "state" anterior junto los obj de array del "initialState" pasando el "action.payload "
+
+NOTA: Una ves que tengas los tres componentes listos del redux puedo ir a los componentes de react a crear 
+los pedidos a la api o db de lo que tenga que filtrar o ordenar para el cliente , en la siguiente etapa 
+desarrollo los pedidos al redux (redux que me va a consumir y traerme los datos de la api).
+
+5: .......
 
 
 
