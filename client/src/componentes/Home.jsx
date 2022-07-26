@@ -6,8 +6,8 @@ import { Card } from './Card';
 import { SearchBar } from './SearchBar';
 import { Paginado } from './Paginado';
 import { NavBar } from './NavBar';
-import { CreateRecipe } from './CreateRecipe';
-// import { DetailRecipe } from './DetailRecipe';
+// import { CreateRecipe } from './CreateRecipe';
+
 
 import {
   getRecipes,
@@ -104,13 +104,13 @@ export const Home = () => {
             return (
               <div key={index}>
                 { /* Creación de un enlace a la página de detalles de la receta. */}
-                {/* <Link to={`/home/${e.id}`}> */}
+                <Link to={`/home/${e.id}`}>
                 <Card
                   name={e.name}
                   image={e.image}
                   diets={e.diets}
                 />
-                {/* </Link> */}
+                </Link>
               </div>
             )
           })

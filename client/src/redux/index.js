@@ -44,10 +44,10 @@ export const getNameRecipe = (name) => {
 export const getDetailRecipe = (id) => {
    return async (dispatch) => {
       try {
-         const detailRecipe = await axios.get(`http://localhost:3001/recipe${id}`);
+         const detalle = await axios.get(`http://localhost:3001/recipe${id}`);
          return dispatch({
             type: GET_DETAIL_RECIPE,
-            payload: detailRecipe.data
+            payload: detalle.data
          })
       } catch (error) {
 
