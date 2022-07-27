@@ -63,7 +63,7 @@ export const Home = () => {
     setOrder(e.target.value);
   }
   //  console.log(getRecipes)
-  function handleClick(e) {
+  const handleClick = (e) => {
     e.preventDefault();
     dispatch(getRecipes())
     // setOrder();
@@ -77,12 +77,15 @@ export const Home = () => {
   return (
     <div>
       <div>
-        <SearchBar/>
+        <SearchBar />
       </div>
       <h1>Todas las recetas</h1>
       <button onClick={(e) => { handleClick(e) }}>
         actualizar
       </button>
+      <Link to='/create'>
+        <button>crear</button>
+      </Link>
       <div>
         <NavBar
           handleFilterDiet={handleFilterDiet}
@@ -105,11 +108,11 @@ export const Home = () => {
               <div key={index}>
                 { /* Creación de un enlace a la página de detalles de la receta. */}
                 <Link to={`/home/${e.id}`}>
-                <Card
-                  name={e.name}
-                  image={e.image}
-                  diets={e.diets}
-                />
+                  <Card
+                    name={e.name}
+                    image={e.image}
+                    diets={e.diets}
+                  />
                 </Link>
               </div>
             )

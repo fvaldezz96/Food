@@ -8,7 +8,8 @@ import {
    FILTER_BY_STATUS,
    FILTER_ORDER,
    FILTER_HEALTHSCORE,
-   FILTER_CREATE
+   FILTER_CREATE,
+   POST_RECIPE
 } from './actions.js';
 // En este archivo meto la logica de las accios 
 //Ademas en este archivo va la coneccion de back con el front
@@ -85,3 +86,14 @@ export const filterCreateRecipe = (payload) => {
       payload
    })
 }
+
+export const postRecipe = (payload) => {
+   return async (dispatch) => {
+      const crearRecipe = ("http://localhost:3001/recipe" + payload)
+      return dispatch({
+         type: POST_RECIPE,
+         payload
+      })
+   }
+}
+

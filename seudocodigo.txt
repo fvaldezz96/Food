@@ -112,12 +112,29 @@ NOTA: Una ves que tengas los tres componentes listos del redux puedo ir a los co
 los pedidos a la api o db de lo que tenga que filtrar o ordenar para el cliente , en la siguiente etapa 
 desarrollo los pedidos al redux (redux que me va a consumir y traerme los datos de la api).
 
-5: .......
+5: Como en los casos anteriores con el componente detalle y el componente crear receta , tengo que usar los 
+hook en el mismo componente como para que quede un poco mas renderizado .
+ En el componente  detalle de la receta voy a utilizar los hook ("useEffect, useDispatch,useSelector") 
+como en casos anteriores en una array function con el parametro "props" , creo la constante dispatch y el "{id}"
+por "props.match.params"  una const que se guarde el "useSelector" y pueda consumir el array de "redux-index".
+ Luego en mi "useEffect" despacho la acciones de redux y por su array el "id" y el dispatch.  
+ En el rendirizado necesito preguntar si hay detalle de receta paso el "name , image " y con un par de tag 
+"p" es resto de las cosas que pide por detalle   .
+
+6: Componente "crearRecipe" para el formulario controlado , voy a necesitar los hook de react y redux , ya que la 
+logica la voy a dejar aplicada al componente asi queda mejor renderizado . 
 
 
-
-
-
+NOTA: Esta nota hace referencia al formulario(para ser mas especifico al tag form) , en este controlador osea
+handleSubmit() ==> la idea es poder pasar el estado por preventDefault() asi sabriamos que el input su estado 
+por defecto es que esta basio , teniendo esto descartado descarto el caso de que el "setErrors(validate({...input,
+[e.target.name]: e.target.value}))"  una ves quye tenga el nuevo value de name hago la condicion que me va a permitir 
+saber si tiene todas los input con sus datos necesarios en el caso de videogame la condicion pregunta 
+  si "(Object.keys(errors).length === 0)" => comprobando que si el objeto de errores esta vacio , si eso da true dispatch 
+la accion con un input de parametro (que seria los datos con lo que voy completando el input) , ahora cuando lo envio 
+paso un alert ("ejemplo...") y dejo el "setInput()" como estaba osea basio 
+caso de que se pueda paso el "history.push("/home")" => para que cuando se cree me mande de nuevo al home .
+si no pasa nada de lo anterior puedo devolver un alert de que no se a podido crear la receta.
 
 
 

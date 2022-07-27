@@ -6,14 +6,16 @@ import {
    FILTER_BY_STATUS,
    FILTER_ORDER,
    FILTER_HEALTHSCORE,
-   FILTER_CREATE
+   FILTER_CREATE,
+   POST_RECIPE
 } from './actions.js';
 
 let initialState = {
    recetas: [],
    allRecetas: [],
    diet: [],
-   detailRecipe: []
+   detailRecipe: [],
+   createRecipe: []
 }
 
 function rootReducer(state = initialState, action) {
@@ -34,7 +36,7 @@ function rootReducer(state = initialState, action) {
       case GET_DETAIL_RECIPE:
          return {
             ...state,
-           detailRecipe: action.payload
+            detailRecipe: action.payload
          }
       case FILTER_BY_STATUS:
          return {
@@ -80,6 +82,11 @@ function rootReducer(state = initialState, action) {
             ...state,
             recetas: action.payload === "crear"
                ? state.recetas : filterRecipe
+         }
+      case POST_RECIPE:
+         return {
+            ...state,
+            createRecipe: action.payload
          }
       default:
          return state;
