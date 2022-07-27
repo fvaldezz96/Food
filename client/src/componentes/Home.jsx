@@ -6,8 +6,6 @@ import { Card } from './Card';
 import { SearchBar } from './SearchBar';
 import { Paginado } from './Paginado';
 import { NavBar } from './NavBar';
-// import { CreateRecipe } from './CreateRecipe';
-
 
 import {
   getRecipes,
@@ -72,20 +70,21 @@ export const Home = () => {
   useEffect(() => {
     dispatch(getRecipes());
     dispatch(filterByDieta());
-  }, [dispatch]); //paso el array basio por que no depende de nada!  
+  }, []); //paso el array basio por que no depende de nada!  
 
   return (
     <div>
       <div>
         <SearchBar />
       </div>
-      <h1>Todas las recetas</h1>
-      <button onClick={(e) => { handleClick(e) }}>
-        actualizar
-      </button>
-      <Link to='/create'>
-        <button>crear</button>
-      </Link>
+      <div>
+        <button onClick={(e) => { handleClick(e) }}>
+          actualizar
+        </button>
+        <Link to='/create'>
+          <button>crear</button>
+        </Link>
+      </div>
       <div>
         <NavBar
           handleFilterDiet={handleFilterDiet}
@@ -116,8 +115,7 @@ export const Home = () => {
                 </Link>
               </div>
             )
-          })
-        }
+          })}
       </div>
     </div>
   )

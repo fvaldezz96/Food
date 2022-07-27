@@ -26,7 +26,7 @@ export const CreateRecipe = () => {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const dietasSeleccion = useSelector((state) => state.filterByDieta);
+  const dietasSeleccion = useSelector((state) => state.recetas);
   /* Un gancho que se utiliza para acceder al estado de la tienda. */
 
   const [errors, setErrors] = useState({});
@@ -35,7 +35,7 @@ export const CreateRecipe = () => {
     summary: "",
     healthScore: "",
     steps: "",
-    diets: []
+    diet: []
   });
 
   const handleSubmit = (e) => {
@@ -47,7 +47,7 @@ export const CreateRecipe = () => {
         summary: "",
         healthScore: "",
         steps: "",
-        diets: []
+        diet: []
       })
       history.push('/home');
     } else {
@@ -77,7 +77,7 @@ export const CreateRecipe = () => {
     setInput({
       ...input,
       /* Agregar el valor de la entrada a la matriz de dietas. */
-      diets: [...input.diets, e.target.value]
+      diets: [...input.diet, e.target.value]
     })
   }
 
@@ -85,14 +85,14 @@ export const CreateRecipe = () => {
     setInput({
       ...input,
       /* Está filtrando la matriz de dietas, eliminando la que coincide con el valor de `e`. */
-      diets: input.diets.filter((d) => d !== e)
+      diets: input.diet.filter((d) => d !== e)
     })
   }
 
 
   useEffect(() => {
     dispatch(filterByDieta());
-  }, [dispatch])
+  }, [])
 
   return (
     <div>
@@ -136,20 +136,20 @@ export const CreateRecipe = () => {
         </div>
         <div>
           <select name='name' onChange={(e) => { handleSelect(e) }}>
-            <option value="diets">
+            <option value="diet">
               Dietas
             </option>
             {
               dietasSeleccion?.map((e) => {
                 <option key={e.id} value={e.name}>
-                  {diets.name}
+                  {e.name}
                 </option>
               })
             }
           </select>
         </div>
         {
-          input.diets.map((e) => (
+          input.diet.map((e) => (
             <div>
               <p>{e}</p>
               <button onClick={() => { handleDelete(e) }}>X</button>

@@ -14,8 +14,7 @@ let initialState = {
    recetas: [],
    allRecetas: [],
    diet: [],
-   detailRecipe: [],
-   createRecipe: []
+   detailRecipe: []
 }
 
 function rootReducer(state = initialState, action) {
@@ -86,7 +85,6 @@ function rootReducer(state = initialState, action) {
       case POST_RECIPE:
          return {
             ...state,
-            createRecipe: action.payload
          }
       default:
          return state;
