@@ -11,10 +11,7 @@ export const Paginado = ({ currentRecipePage, allRecipe, page }) => {
       <div>
         {
           numberPage && numberPage.map(e => (
-            <a
-              key={e}
-              onClick={() => page(e)}>{e}
-            </a>
+            <a key={e} onClick={() => page(e)}>{e}</a>
           ))
         }
       </div>

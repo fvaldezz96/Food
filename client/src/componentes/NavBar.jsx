@@ -1,17 +1,6 @@
 import React from 'react'
-// import { useSelector, useDispatch } from 'react-redux';
-// import { filterByDieta } from '../redux/index';
 
 export const NavBar = ({ handleHealthScore, handleFilterDiet, handleFilterOrder, handleFilterCreate }) => {
-
-  // const dispatch = useDispatch();
-  // const diet = useSelector((s) => s.diet);
-
-  // const handleFilter = (e) => {
-  //   dispatch(filterByDieta(e.target.value));
-
-  // }
-
 
   return (
     <div>
@@ -22,9 +11,9 @@ export const NavBar = ({ handleHealthScore, handleFilterDiet, handleFilterOrder,
       <select onChange={(e) => { handleHealthScore(e) }}>
         <option value="healthScore">Nivel saludable</option>
       </select>
-      <select name='diet'
+      <select 
+        onChange={(e) => handleFilterDiet(e)}
         /* Llamar a la función handleFilter y pasar el evento como argumento. */
-        onChange={(e) => { handleFilterDiet(e) }}
       >
         <option value="gluten free">gluten free</option>
         <option value="ketogenic">ketogenic</option>

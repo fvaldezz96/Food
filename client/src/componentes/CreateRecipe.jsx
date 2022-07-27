@@ -26,7 +26,7 @@ export const CreateRecipe = () => {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const dietasSeleccion = useSelector((state) => state.recetas);
+  const dietasSeleccion = useSelector((state) => state.diet);
   /* Un gancho que se utiliza para acceder al estado de la tienda. */
 
   const [errors, setErrors] = useState({});
@@ -39,6 +39,13 @@ export const CreateRecipe = () => {
   });
 
   const handleSubmit = (e) => {
+    e.preventDefault();
+    setErrors(
+      validations({
+        ...input,
+        [e.target.name]: e.target.value
+      })
+    );
     if (Object.keys(errors).length === 0) {
       dispatch(postRecipe(input));
       alert('Su receta fue creada con exito');
@@ -100,42 +107,55 @@ export const CreateRecipe = () => {
       <Link to='/home'>
         <button>volver</button>
       </Link>
-      <form onChange={(e) => { handleSubmit(e) }}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div>
           <input
-            onChange={(e) => { handleChange(e) }}
+            onChange={(e) => handleChange(e)}
             type="text"
             placeholder="Nombre..."
+            name="name"
             value={input.name}
+          // key={input.name}
           />
           {errors.name && <h4>{errors.name}</h4>}
-        </div>  <div>
+        </div>
+        <div>
           <input
-            onChange={(e) => { handleChange(e) }}
+            onChange={(e) => handleChange(e)}
             type="text"
             placeholder="Descripcion..."
             value={input.summary}
+            // key={input.summary}
+            name="summary"
           />
           {errors.summary && <h4>{errors.summary}</h4>}
-        </div>  <div>
+        </div>
+        <div>
           <input
-            onChange={(e) => { handleChange(e) }}
-            type="text"
+            onChange={(e) => handleChange(e)}
+            type="number"
             placeholder="Nivel saludable..."
             value={input.healthScore}
+            // key={input.healthScore}
+            name="healthScore"
+            min="0"
+            max="100"
           />
           {errors.healthScore && <h4>{errors.healthScore}</h4>}
-        </div>  <div>
+        </div>
+        <div>
           <input
-            onChange={(e) => { handleChange(e) }}
+            onChange={(e) => handleChange(e)}
             type="text"
             placeholder="Pasos..."
             value={input.steps}
+            // key={input.steps}
+            name="steps"
           />
           {errors.steps && <h4>{errors.steps}</h4>}
         </div>
         <div>
-          <select name='name' onChange={(e) => { handleSelect(e) }}>
+          <select name='diet' onChange={(e) => handleSelect(e)}>
             <option value="diet">
               Dietas
             </option>

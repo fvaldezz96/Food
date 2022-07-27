@@ -3,7 +3,7 @@ import {
    GET_RECIPES,
    GET_NAME_RECIPES,
    GET_DETAIL_RECIPE,
-   FILTER_BY_STATUS,
+   FILTER_DIET,
    FILTER_ORDER,
    FILTER_HEALTHSCORE,
    FILTER_CREATE,
@@ -37,11 +37,15 @@ function rootReducer(state = initialState, action) {
             ...state,
             detailRecipe: action.payload
          }
-      case FILTER_BY_STATUS:
+      case FILTER_DIET:
+         // console.log(action.payload)
+         const dietCopy = state.allRecetas.filter((e) => e.diets.find((d) => d === action.payload));
+         // console.log('esto es el estado', state.allRecetas)
+         // console.log("esto es dietcopy: ", dietCopy)
          return {
             ...state,
-            recetas: action.payload,
-            //  recetas : action.payload
+            recetas: dietCopy,
+            //recetas : action.payload
          }
       case FILTER_ORDER:
          const sortArr = action.payload === "A-Z" ?
@@ -69,6 +73,7 @@ function rootReducer(state = initialState, action) {
          }
 
       case FILTER_HEALTHSCORE:
+
          return {
             ...state,
             recetas: action.payload,

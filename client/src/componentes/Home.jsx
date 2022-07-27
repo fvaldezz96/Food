@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'redux-devtools-extension';
+import { Link } from 'react-router-dom';
 import { Card } from './Card';
 import { SearchBar } from './SearchBar';
 import { Paginado } from './Paginado';
@@ -24,8 +24,8 @@ export const Home = () => {
   // console.log(allRecipe)
   const [currentPage, setCurrentPage] = useState(1);//va a empezar en uno 
   const [currentRecipePage, setCurrentRecipePage] = useState(10);//recetas por apginas
-  const indexEnd = currentPage * currentRecipePage;
-  const indexFirst = indexEnd - currentRecipePage;
+  const indexEnd = currentPage * currentRecipePage;//10
+  const indexFirst = indexEnd - currentRecipePage;//0
   const currentRecipe = allRecipe.slice(
     indexFirst,
     indexEnd
@@ -42,8 +42,9 @@ export const Home = () => {
   const handleFilterDiet = (e) => {
     dispatch(filterByDieta(e.target.value))
     setCurrentPage(1);
-    setOrder(e.target.value);
+    //  setOrder(e.target.value);
   }
+
   const handleFilterOrder = (e) => {
     dispatch(filterOrder(e.target.value))
     setCurrentPage(1);
@@ -52,13 +53,13 @@ export const Home = () => {
   const handleFilterCreate = (e) => {
     dispatch(filterCreateRecipe(e.target.value));
     setCurrentPage(1);
-    setOrder(e.target.value);
+    // setOrder(e.target.value);
   }
 
   const handleHealthScore = (e) => {
     dispatch(filterHealthScore(e.target.value));
     setCurrentPage(1);
-    setOrder(e.target.value);
+    // setOrder(e.target.value);
   }
   //  console.log(getRecipes)
   const handleClick = (e) => {
@@ -69,7 +70,7 @@ export const Home = () => {
 
   useEffect(() => {
     dispatch(getRecipes());
-    dispatch(filterByDieta());
+    // dispatch(filterByDieta());
   }, []); //paso el array basio por que no depende de nada!  
 
   return (
@@ -106,7 +107,7 @@ export const Home = () => {
             return (
               <div key={index}>
                 { /* Creación de un enlace a la página de detalles de la receta. */}
-                <Link to={`/home/${e.id}`}>
+                <Link to={`/detail/${e.id}`}>
                   <Card
                     name={e.name}
                     image={e.image}

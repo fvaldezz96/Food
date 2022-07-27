@@ -5,7 +5,7 @@ import {
    GET_RECIPES,
    GET_NAME_RECIPES,
    GET_DETAIL_RECIPE,
-   FILTER_BY_STATUS,
+   FILTER_DIET,
    FILTER_ORDER,
    FILTER_HEALTHSCORE,
    FILTER_CREATE,
@@ -29,9 +29,10 @@ export const getRecipes = () => {
 };
 
 export const getNameRecipe = (name) => {
+   console.log(name)
    return async (dispatch) => {
       try {
-         const nameRecipe = await axios.get(`http://localhost:3001/recipe${name}`)
+         const nameRecipe = await axios.get("http://localhost:3001/recipe?name=" + name)
          return dispatch({
             type: GET_NAME_RECIPES,
             payload: nameRecipe.data
@@ -45,7 +46,7 @@ export const getNameRecipe = (name) => {
 export const getDetailRecipe = (id) => {
    return async (dispatch) => {
       try {
-         const detalle = await axios.get(`http://localhost:3001/recipe${id}`);
+         const detalle = await axios.get(`http://localhost:3001/recipe/${id}`);
          return dispatch({
             type: GET_DETAIL_RECIPE,
             payload: detalle.data
@@ -56,14 +57,12 @@ export const getDetailRecipe = (id) => {
    }
 }
 
-export const filterByDieta = () => {
-   return async function (dispatch) {
-      const dietData = await axios.get("http://localhost:3001/diet")
-      return dispatch({
-         type: FILTER_BY_STATUS,
-         payload: dietData.data
+export const filterByDieta = (payload) => {
+   // console.log('esto es action',payload)
+      return({
+         type: FILTER_DIET,
+         payload
       })
-   }
 }
 
 export const filterOrder = (payload) => {
@@ -88,11 +87,11 @@ export const filterCreateRecipe = (payload) => {
 }
 
 export const postRecipe = (payload) => {
-   return async (dispatch) => {
-      const crearRecipe = ("http://localhost:3001/recipe" + payload)
-      return dispatch({
+   return async () => {
+      const crearRecipe = ("http://localhost:3001/recipe", + payload)
+      return ({
          type: POST_RECIPE,
-         payload
+         payload: crearRecipe
       })
    }
 }
