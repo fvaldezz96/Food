@@ -3,7 +3,7 @@ import { postRecipe, filterByDieta } from '../redux/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-
+import '../style/CreateRecipe.css';
 
 const validations = (input) => {
   const errors = {}
@@ -103,13 +103,14 @@ export const CreateRecipe = () => {
 
   return (
     <div>
-      <div><a>Crea tu receta</a></div>
       <Link to='/home'>
-        <button>volver</button>
+        <button className='botonVolver'>volver</button>
       </Link>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <div className='titulo'>Crea tu receta</div>
+      <form className="form" onSubmit={(e) => handleSubmit(e)}>
         <div>
           <input
+            className="input"
             onChange={(e) => handleChange(e)}
             type="text"
             placeholder="Nombre..."
@@ -119,8 +120,21 @@ export const CreateRecipe = () => {
           />
           {errors.name && <h4>{errors.name}</h4>}
         </div>
-        <div>
+        <div >
+          <label className="" ></label>
           <input
+            className="url"
+            type="url"
+            name="background_image"
+            value={input.background_image}
+            placeholder="URL"
+            onChange={(e) => handleChange(e)}
+          />
+        </div>
+        <br />
+        <div>
+          <textarea
+            className="descripcion"
             onChange={(e) => handleChange(e)}
             type="text"
             placeholder="Descripcion..."
@@ -130,8 +144,10 @@ export const CreateRecipe = () => {
           />
           {errors.summary && <h4>{errors.summary}</h4>}
         </div>
+        <br />
         <div>
           <input
+            className="input"
             onChange={(e) => handleChange(e)}
             type="number"
             placeholder="Nivel saludable..."
@@ -143,8 +159,10 @@ export const CreateRecipe = () => {
           />
           {errors.healthScore && <h4>{errors.healthScore}</h4>}
         </div>
+        <br />
         <div>
           <input
+            className="input"
             onChange={(e) => handleChange(e)}
             type="text"
             placeholder="Pasos..."
@@ -155,7 +173,7 @@ export const CreateRecipe = () => {
           {errors.steps && <h4>{errors.steps}</h4>}
         </div>
         <div>
-          <select name='diet' onChange={(e) => handleSelect(e)}>
+          <select className="botonSelect" name='diet' onChange={(e) => handleSelect(e)}>
             <option value="diet">
               Dietas
             </option>
@@ -176,7 +194,7 @@ export const CreateRecipe = () => {
             </div>
           ))}
         <div>
-          <button>crear</button>
+          <button className='botonCrear'>crear</button>
         </div>
       </form>
     </div>

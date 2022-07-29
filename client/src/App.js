@@ -13,7 +13,7 @@ export default function App() {
           <Route exact path='/' component={Landing} />
           <Route path='/home' component={Home} />
           <Route path='/create' component={CreateRecipe} />
-          <Route path='/detail' component={DetailRecipe} />
+          <Route path='/detail/:id' component={DetailRecipe} />
         </Switch>
       </div>
     </BrowserRouter>

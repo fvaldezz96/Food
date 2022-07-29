@@ -1,4 +1,5 @@
 import React from 'react'
+import '../style/Paginado.css';
 
 export const Paginado = ({ currentRecipePage, allRecipe, page }) => {
 
@@ -7,14 +8,18 @@ export const Paginado = ({ currentRecipePage, allRecipe, page }) => {
     numberPage.push(i)
   }
   return (
-    <nav>
-      <div>
-        {
-          numberPage && numberPage.map(e => (
-            <a key={e} onClick={() => page(e)}>{e}</a>
-          ))
-        }
-      </div>
-    </nav>
+    <div className='general'>
+      <nav className="numberContainer">
+        <div>
+          {
+            numberPage && numberPage.map(e => (
+              <a
+                className="number"
+                key={e} onClick={() => page(e)}>{e}</a>
+            ))
+          }
+        </div>
+      </nav>
+    </div>
   )
 }

@@ -1,0 +1,14 @@
+.orden {
+   align-items: center;
+   background-color: #9e0731;
+   border-color: #ffff;
+   /* border-radius: 12px; */
+   border-style: solid;
+   border-width: 2px;
+   border: none;
+   margin: 2px;
+   color: #fff;
+   display: inline-block;
+   font-size: 14px;
+   padding: 7px 10px;
+}

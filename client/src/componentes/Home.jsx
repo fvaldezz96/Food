@@ -6,6 +6,7 @@ import { Card } from './Card';
 import { SearchBar } from './SearchBar';
 import { Paginado } from './Paginado';
 import { NavBar } from './NavBar';
+import '../style/Home.css';
 
 import {
   getRecipes,
@@ -75,24 +76,22 @@ export const Home = () => {
 
   return (
     <div>
-      <div>
-        <SearchBar />
-      </div>
-      <div>
-        <button onClick={(e) => { handleClick(e) }}>
-          actualizar
-        </button>
-        <Link to='/create'>
-          <button>crear</button>
-        </Link>
-      </div>
-      <div>
-        <NavBar
-          handleFilterDiet={handleFilterDiet}
-          handleFilterOrder={handleFilterOrder}
-          handleFilterCreate={handleFilterCreate}
-          handleHealthScore={handleHealthScore}
-        />
+      <div className='navBar'>
+        <div className='divs'>
+          <NavBar className='navs'
+            handleFilterDiet={handleFilterDiet}
+            handleFilterOrder={handleFilterOrder}
+            handleFilterCreate={handleFilterCreate}
+            handleHealthScore={handleHealthScore}
+          />
+          <Link to='/create'>
+            <button className='navs'>crear</button>
+          </Link>
+          <button className='navs' onClick={(e) => { handleClick(e) }}>
+            actualizar
+          </button>
+          <SearchBar className='navs'/>
+        </div>
       </div>
       <div>
         <Paginado
@@ -101,7 +100,7 @@ export const Home = () => {
           page={page}
         />
       </div>
-      <div>
+      <div className='Card'>
         {
           currentRecipe?.map((e, index) => {
             return (

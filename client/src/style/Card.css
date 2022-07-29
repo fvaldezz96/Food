@@ -1,0 +1,45 @@
+.card {
+   width: 18rem;
+   height: 22rem;
+   align-items: center;
+   display: flex;
+   flex-direction: row;
+   margin: 2rem 0;
+   padding: 2rem 0;
+   position: relative;
+   text-align: center;
+   z-index: 2;
+   background-color: rgba(255, 41, 41, 0.7);
+   transition: transform .2s;
+}
+
+.card:hover {
+   transform: scale(1.1);
+}
+
+.name {
+   text-align: center;
+   align-items: center;
+   font-family: url('../font/JetBrainsMono-Light.ttf');
+   font-size: 20px;
+   position: absolute;
+   top: 20px;
+   left: 50px;
+   z-index: 2;
+}
+
+.imagen {
+   width: 16rem;
+   height: 9.40rem;
+   margin-left: 16px;
+   position: center;
+   z-index: 0;
+}
+
+.diet {
+   align-items: center;
+   position: absolute;
+   bottom: 20px;
+   left: 0px;
+   right: 0px;
+}

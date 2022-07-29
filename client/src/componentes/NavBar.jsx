@@ -1,19 +1,21 @@
-import React from 'react'
+import React from 'react';
+import '../style/NavBar.css';
 
 export const NavBar = ({ handleHealthScore, handleFilterDiet, handleFilterOrder, handleFilterCreate }) => {
 
   return (
-    <div>
-      <select onChange={(e) => { handleFilterOrder(e) }}>
+    <div >
+      <select className='orden' onChange={(e) => { handleFilterOrder(e) }}>
         <option value="A-Z">A-Z</option>
         <option value="Z-A">Z-A</option>
       </select>
-      <select onChange={(e) => { handleHealthScore(e) }}>
+      <select className='orden' onChange={(e) => { handleHealthScore(e) }}>
         <option value="healthScore">Nivel saludable</option>
       </select>
-      <select 
+      <select
+        className='orden'
         onChange={(e) => handleFilterDiet(e)}
-        /* Llamar a la función handleFilter y pasar el evento como argumento. */
+      /* Llamar a la función handleFilter y pasar el evento como argumento. */
       >
         <option value="gluten free">gluten free</option>
         <option value="ketogenic">ketogenic</option>
@@ -27,7 +29,7 @@ export const NavBar = ({ handleHealthScore, handleFilterDiet, handleFilterOrder,
         <option value="low fodmap">low fodmap</option>
         <option value="whole 30">whole 30</option>
       </select>
-      <select onChange={(e) => { handleFilterCreate(e) }}>
+      <select className='orden' onChange={(e) => { handleFilterCreate(e) }}>
         <option value="crear">creado</option>
         <option value="recetas">recetas</option>
       </select>

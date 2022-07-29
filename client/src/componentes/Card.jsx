@@ -1,12 +1,15 @@
-import React from 'react'
+import React from 'react';
+import '../style/Card.css';
 
 export const Card = ({ image, name, diets }) => {
   // const dietas = diets.map(e => e.name)
   return (
-    <div className=''>
-      <h2>{name}</h2>
-      <img src={image} alt="img not fond" width="350px" height="250px"/>
-      <h5>{diets.join(', ')}</h5>
+    <div className='card'>
+      <img className='imagen' src={image} alt="img not fond" />
+      <div>
+        <h2 className='name'>{name}</h2>
+        <h5 className='diet'>{diets.join(', ')}</h5>
+      </div>
     </div>
   )
 }

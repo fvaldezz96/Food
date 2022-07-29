@@ -1,0 +1,35 @@
+.numberContainer {
+   /* display: flex; */
+   justify-content: center;
+   height: 4vh;
+   background-color: #9e0731;
+   background-position: bottom;
+   position: center;
+   z-index: 0;
+   align-items: center;
+   display: inline-block;
+   padding: 0 3vw;
+   cursor: pointer;
+   margin-top: 1%;
+   margin-bottom: 3%;
+}
+
+.number {
+   /* color: black; */
+   font-weight: 700;
+   font-size: large;
+   margin: 1em;
+   transition: transform .2s;
+}
+
+.number:hover {
+   transform: scale(1.1);
+   cursor: pointer;
+   background-color: #8b0000;
+}
+
+.general {
+   background-color: #9e0731;
+   /* align-items: center;
+   display: inline-block; */
+}

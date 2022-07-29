@@ -14,7 +14,7 @@ let initialState = {
    recetas: [],
    allRecetas: [],
    diet: [],
-   detailRecipe: []
+   detailRecipe: {}
 }
 
 function rootReducer(state = initialState, action) {
@@ -27,9 +27,12 @@ function rootReducer(state = initialState, action) {
             allRecetas: action.payload
          }
       case GET_NAME_RECIPES:
+         const filtrado = state.recetas.filter((e) => e.name === action.payload[0].name)
+         console.log(action.payload, 'soy el obj action.payload')
+         console.log(filtrado, 'soy la variable filtrado')
          return {
             ...state,
-            recetas: action.payload
+            recetas: filtrado
          }
 
       case GET_DETAIL_RECIPE:

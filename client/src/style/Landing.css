@@ -1,0 +1,93 @@
+@font-face {
+   font-family: 'JetBrainsMono-Light';
+   src: url('../font/JetBrainsMono-Light.ttf')
+}
+
+* {
+   font-family: 'JetBrainsMono-Light';
+   color: black;
+}
+
+.container-fluid {
+   background-image: url('../img/img2.jpg');
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-position: center center;
+   background-size: cover;
+   min-height: 100vh;
+   padding: 0;
+   margin: 0;
+}
+
+.home {
+   height: 100vh;
+   margin-top: 3%;
+}
+
+.splash {
+   height: 100%;
+   width: 100%;
+   text-align: center;
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   /* align horizontal */
+   align-items: center;
+   /* align vertical */
+}
+
+a {
+   font-family: 'JetBrainsMono-Light';
+   color: black;
+}
+
+.CTA {
+   margin: auto;
+   width: calc(11.40vw + 15px);
+   height: calc(5vw + 8px);
+   background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, red 100%);
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+   border: none;
+   border-radius: 1rem;
+   justify-content: center;
+   text-transform: uppercase;
+   font-size: 1.45vw;
+   font-weight: bold;
+   cursor: pointer;
+}
+
+.CTA:after {
+   content: attr(alt);
+   width: 12vw;
+   height: 5vw;
+   background-color: rgba(255, 255, 255, 1);
+   display: flex;
+   border-radius: 1rem;
+   align-items: center;
+   justify-content: center;
+}
+
+.CTA:hover {
+   animation: slidebg 2s linear infinite;
+}
+
+@keyframes slidebg {
+   to {
+      background-position: 20vw;
+   }
+}
+
+.splash h1 {
+   color: rgb(0 0 0);
+}
+
+.splash p {
+   padding-top: 10px;
+   color: black;
+}
+
+.tituloPagina {
+   font-family: 'JetBrainsMono-Light';
+}

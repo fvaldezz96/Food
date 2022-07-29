@@ -29,10 +29,11 @@ export const getRecipes = () => {
 };
 
 export const getNameRecipe = (name) => {
-   console.log(name)
+   console.log(name,'soy el action create')
    return async (dispatch) => {
       try {
-         const nameRecipe = await axios.get("http://localhost:3001/recipe?name=" + name)
+         const nameRecipe = await axios.get(`http://localhost:3001/recipe/name?name=${name}`)
+         console.log(nameRecipe,'soy nameRecipe')
          return dispatch({
             type: GET_NAME_RECIPES,
             payload: nameRecipe.data
@@ -44,25 +45,27 @@ export const getNameRecipe = (name) => {
 }
 
 export const getDetailRecipe = (id) => {
+   console.log(id, 'soy el id de action')
    return async (dispatch) => {
       try {
          const detalle = await axios.get(`http://localhost:3001/recipe/${id}`);
+         console.log(detalle, 'soy el detalle');
          return dispatch({
             type: GET_DETAIL_RECIPE,
             payload: detalle.data
          })
       } catch (error) {
-
+          console.log(error)
       }
    }
 }
 
 export const filterByDieta = (payload) => {
    // console.log('esto es action',payload)
-      return({
-         type: FILTER_DIET,
-         payload
-      })
+   return ({
+      type: FILTER_DIET,
+      payload
+   })
 }
 
 export const filterOrder = (payload) => {

@@ -2,37 +2,37 @@ import React from 'react'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getNameRecipe } from '../redux/index';
+import '../style/SearchBar.css';
 
 export const SearchBar = () => {
 
   const dispatch = useDispatch();
   const [name, setName] = useState("");
-  // const oneRecipe = useSelector((e) => e.recipe)
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(getNameRecipe(name))
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(getNameRecipe(name));
+    // console.log(getNameRecipe())
     setName("");
-    /* Establecer el estado de la entrada en una cadena vacía. */
   }
 
-  const handleChange = (e) => {
+  function handleChange(e) {
     e.preventDefault();
     setName(e.target.value);
-    /* Establecer el valor de la entrada en el estado. */
   }
 
   return (
-    <div>
-      <div>
+    <div className="contenedorSearch">
+      <div className="container-3">
         <input
-          onChange={(e) => handleChange(e)}
           type="text"
-          value={name}
           id="search"
-          placeholder='Buscar...'
+          value={name}
+          onChange={(e) => handleChange(e)}
+          placeholder="Buscar..."
         />
-        <button type='submit' onClick={(e) => { handleSubmit(e) }}>Ir</button>
+        <button className='botonIr' type='submit' onClick={(e) => handleSubmit(e)}><i className="fa-solid fa-magnifying-glass"></i>Ir</button>
       </div>
     </div>
   )

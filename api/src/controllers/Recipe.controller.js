@@ -1,19 +1,20 @@
 const axios = require('axios');
+// const { Op } = require('sequelize/types');
 const { Recipe, Diet } = require('../db');
 
 const allRecipes = async () => {
-   
-      const typeRecipes = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&addRecipeInformation=true&number=100`)).data.results;
-      const mapeoRecipes = typeRecipes.map((e) => ({
-         id: e.id,
-         name: e.sourceName,
-         steps: e.analyzedInstructions[0]?.steps.map(e => ({ number: e.number, step: e.step })),
-         summary: e.summary,
-         healthScore: e.healthScore,
-         diets: e.diets,
-         image: e.image
-      }))
-      return mapeoRecipes;
+
+   const typeRecipes = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&addRecipeInformation=true&number=10`)).data.results;
+   const mapeoRecipes = typeRecipes.map((e) => ({
+      id: e.id,
+      name: e.sourceName ? e.sourceName : e.title,
+      steps: e.analyzedInstructions[0]?.steps.map(e => ({ number: e.number, step: e.step })),
+      summary: e.summary,
+      healthScore: e.healthScore,
+      diets: e.diets,
+      image: e.image
+   }))
+   return mapeoRecipes;
 
 }
 
@@ -28,8 +29,8 @@ const allDb = async () => {
          summary: e.summary,
          healthScore: e.healthScore,
          image: e.image,
-         diets:e.diets.map(e => e.name),
-          /* Asignación de la matriz de dietas a una matriz de nombres. */
+         diets: e.diets.map(e => e.name),
+         /* Asignación de la matriz de dietas a una matriz de nombres. */
          steps: e.steps
       }));
       return allData;
@@ -47,20 +48,30 @@ const getApiandDb = async (req, res) => {
    } catch (error) {
       console.log(error)
    }
+   // return getApiandDb;
 }
 
 //funcio  para encontrar por name la receta 
 const getNames = async (req, res) => {
+   let name = req.query.name;
+   console.log(name,'soy el nombre de la api')
+   let all = await allRecipes();
+   let db = await allDb();
+   let allAndDb = all.concat(db);
+   //console.log('llamada a la api',allRecipes)
    try {
-      const { name } = req.query;
-      /* `req.query` es una propiedad del objeto de solicitud que se utiliza para
-      obtener la cadena de consulta de la URL de solicitud. */
-      const allNamesRecetsApi = await allRecipes();
-      const allNamesRecetsDb = await allDb();                                                           //tengo que estudiar la propiedad icludes          
-      const nameEncontrado = [...allNamesRecetsApi, ...allNamesRecetsDb].filter((e) => e.title.toLowerCase().includes(name.toLowerCase()));
-      !nameEncontrado.length ? res.send('Nombre no encontrado!') : res.send(nameEncontrado);
+      if (name) {
+         let searchRecipe = await allAndDb.filter((el) =>
+            el.name.toLowerCase().includes(name.toLowerCase())
+         );
+         searchRecipe.length
+            ? res.status(200).send(searchRecipe)
+            : res.status(404).send("no encontramos la receta lo siento");
+      } else {
+         res.status(200).send(allAndDb);
+      }
    } catch (error) {
-      console.log(error)
+      console.log(error);
    }
 };
 
@@ -68,10 +79,11 @@ const getNames = async (req, res) => {
 const getId = async (req, res) => {
    try {
       const { id } = req.params;
-      if (/^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i.test(id)) {
+      if (id) {
          const idRecipesApi = await allRecipes();
          const dataApi = idRecipesApi.filter((e) => e.id === Number(id));
-         return res.send(dataApi);
+         // console.log(dataApi,'hola soy io el rangers rojo');
+         return res.send(dataApi[0]);
       } else {
          const idRecipesDb = await allDb();
          const dataDb = idRecipesDb.filter((e) => e.id === id)
