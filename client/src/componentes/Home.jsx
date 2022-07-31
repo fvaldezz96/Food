@@ -21,21 +21,18 @@ export const Home = () => {
   // const create = CreateRecipe();
   const dispatch = useDispatch();
   /* Obtener el estado de la tienda redux.osea trae las recetas */
-  const allRecipe = useSelector((state) => state.recetas);
-  // console.log(allRecipe)
+  const todasLasRecetas = useSelector(state => state.recetas);
+  // console.log(todasLasRecetas,'soy recetas de front');
   const [currentPage, setCurrentPage] = useState(1);//va a empezar en uno 
   const [currentRecipePage, setCurrentRecipePage] = useState(10);//recetas por apginas
   const indexEnd = currentPage * currentRecipePage;//10
   const indexFirst = indexEnd - currentRecipePage;//0
-  const currentRecipe = allRecipe.slice(
-    indexFirst,
-    indexEnd
-    //toma el indice del primero y del ultimo personaje.
-  );
+  const currentRecipe = todasLasRecetas.slice(indexFirst, indexEnd);
+  //toma el indice del primero y del ultimo personaje.
 
   const [order, setOrder] = useState("");
 
-  //esta me va a ayudar al renderisado .
+  //esta me va a ayudar al renderisado .  
   const page = (np) => {
     setCurrentPage(np)
   }
@@ -51,6 +48,7 @@ export const Home = () => {
     setCurrentPage(1);
     setOrder(e.target.value);
   }
+
   const handleFilterCreate = (e) => {
     dispatch(filterCreateRecipe(e.target.value));
     setCurrentPage(1);
@@ -90,13 +88,13 @@ export const Home = () => {
           <button className='navs' onClick={(e) => { handleClick(e) }}>
             actualizar
           </button>
-          <SearchBar className='navs'/>
+          <SearchBar className='navs' />
         </div>
       </div>
       <div>
         <Paginado
           currentRecipePage={currentRecipePage}
-          allRecipe={allRecipe.length}
+          todasLasRecetas={todasLasRecetas.length}
           page={page}
         />
       </div>

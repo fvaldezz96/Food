@@ -29,11 +29,11 @@ export const getRecipes = () => {
 };
 
 export const getNameRecipe = (name) => {
-   console.log(name,'soy el action create')
+   // console.log(name, 'soy el action create')
    return async (dispatch) => {
       try {
          const nameRecipe = await axios.get(`http://localhost:3001/recipe/name?name=${name}`)
-         console.log(nameRecipe,'soy nameRecipe')
+         // console.log(nameRecipe, 'soy nameRecipe')
          return dispatch({
             type: GET_NAME_RECIPES,
             payload: nameRecipe.data
@@ -45,7 +45,7 @@ export const getNameRecipe = (name) => {
 }
 
 export const getDetailRecipe = (id) => {
-   console.log(id, 'soy el id de action')
+   // console.log(id, 'soy el id de action')
    return async (dispatch) => {
       try {
          const detalle = await axios.get(`http://localhost:3001/recipe/${id}`);
@@ -55,7 +55,7 @@ export const getDetailRecipe = (id) => {
             payload: detalle.data
          })
       } catch (error) {
-          console.log(error)
+         console.log(error)
       }
    }
 }
@@ -83,6 +83,7 @@ export const filterHealthScore = (payload) => {
 }
 
 export const filterCreateRecipe = (payload) => {
+   // console.log(payload,'soy el payload de las action')
    return ({
       type: FILTER_CREATE,
       payload
@@ -90,9 +91,11 @@ export const filterCreateRecipe = (payload) => {
 }
 
 export const postRecipe = (payload) => {
-   return async () => {
-      const crearRecipe = ("http://localhost:3001/recipe", + payload)
-      return ({
+   // console.log(payload, 'soy el payload de postRecipe')
+   return async (dispatch) => {
+      const crearRecipe = await axios.post("http://localhost:3001/recipe", payload)
+      // console.log(crearRecipe, 'soy la variable')
+      return dispatch({
          type: POST_RECIPE,
          payload: crearRecipe
       })

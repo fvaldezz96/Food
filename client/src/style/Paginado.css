@@ -2,7 +2,7 @@
    /* display: flex; */
    justify-content: center;
    height: 4vh;
-   background-color: #9e0731;
+   /* background-color: #9e0731; */
    background-position: bottom;
    position: center;
    z-index: 0;
@@ -15,7 +15,7 @@
 }
 
 .number {
-   /* color: black; */
+   background-color: black;
    font-weight: 700;
    font-size: large;
    margin: 1em;
@@ -25,7 +25,7 @@
 .number:hover {
    transform: scale(1.1);
    cursor: pointer;
-   background-color: #8b0000;
+   /* background-color: #8b0000; */
 }
 
 .general {

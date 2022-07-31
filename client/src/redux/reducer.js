@@ -28,8 +28,8 @@ function rootReducer(state = initialState, action) {
          }
       case GET_NAME_RECIPES:
          const filtrado = state.recetas.filter((e) => e.name === action.payload[0].name)
-         console.log(action.payload, 'soy el obj action.payload')
-         console.log(filtrado, 'soy la variable filtrado')
+         // console.log(action.payload, 'soy el obj action.payload')
+         // console.log(filtrado, 'soy la variable filtrado')
          return {
             ...state,
             recetas: filtrado
@@ -38,57 +38,60 @@ function rootReducer(state = initialState, action) {
       case GET_DETAIL_RECIPE:
          return {
             ...state,
-            detailRecipe: action.payload
+            detailRecipe: action.payload 
          }
       case FILTER_DIET:
-         // console.log(action.payload)
          const dietCopy = state.allRecetas.filter((e) => e.diets.find((d) => d === action.payload));
-         // console.log('esto es el estado', state.allRecetas)
-         // console.log("esto es dietcopy: ", dietCopy)
          return {
             ...state,
             recetas: dietCopy,
-            //recetas : action.payload
          }
       case FILTER_ORDER:
+         const todo = state.recetas;
          const sortArr = action.payload === "A-Z" ?
-            state.recetas.sort((a, b) => {
-               if (a.name > b.name) {
-                  return 1;
-               }
-               if (b.name > a.name) {
-                  return - 1;
-               }
+            todo.sort((a, b) => {
+               if (a.name > b.name) return 1;
+               if (b.name > a.name) return - 1;
                return 0
-            }) : state.recetas.sort((a, b) => {
-               if (a.name > b.name) {
-                  return -1
-               }
-               if (b.name > a.name) {
-                  return 1;
-               }
+            }) : todo.sort((a, b) => {
+               if (a.name > b.name) return -1
+               if (b.name > a.name) return 1;
                return 0
             })
          /* Devolviendo el estado y la matriz de recetas. */
          return {
             ...state,
-            recetas: sortArr
+            recetas: sortArr,
          }
 
       case FILTER_HEALTHSCORE:
-
+         const niveles = state.recetas;
+         const array = action.payload === "asc" ?
+            niveles.sort((a, b) => {
+               if (a.healthScore > b.healthScore) return 1;
+               if (a.healthScore < b.healthScore) return -1;
+               return 0;
+            }) : niveles.sort((a, b) => {
+               if (a.healthScore > b.healthScore) return -1;
+               if (a.healthScore < b.healthScore) return 1;
+               return 0;
+            });
          return {
             ...state,
-            recetas: action.payload,
+            recetas: array,
          }
+
       case FILTER_CREATE:
-         const filterRecipe = action.payload === "recetas"
-            ? state.recetas.filter((e) => e.id.length > 10)
-            : state.recetas.filter((e) => e.id.toString().length > 6);
+         const todas = state.allRecetas
+         const filterRecipe = action.payload === "create"
+            // console.log(todas,'soy el todas')
+            // console.log(action.payload,'soy el action payload')
+            ? todas.filter((e) => e.id.length > 10)//UUID
+            : todas.filter((e) => !e.id.length <= 6)//ID
+         // console.log(state.allRecetas)
          return {
             ...state,
-            recetas: action.payload === "crear"
-               ? state.recetas : filterRecipe
+            recetas: action.payload === "all" ? state.allRecetas : filterRecipe
          }
       case POST_RECIPE:
          return {

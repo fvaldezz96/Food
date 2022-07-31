@@ -10,7 +10,7 @@ export const DetailRecipe = (props) => {
   const dispatch = useDispatch();
   const { id } = props.match.params
   /* Una forma de obtener la identificación de la url. */
-  const recipeDetail = useSelector((state) => state.detailRecipe);
+  const recipeDetail = useSelector(state => state.detailRecipe)
   console.log(recipeDetail, 'soy el front(stado)');
 
   useEffect(() => {

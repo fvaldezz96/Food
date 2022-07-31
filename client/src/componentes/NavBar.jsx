@@ -6,16 +6,18 @@ export const NavBar = ({ handleHealthScore, handleFilterDiet, handleFilterOrder,
   return (
     <div >
       <select className='orden' onChange={(e) => { handleFilterOrder(e) }}>
+        <option value="">Ordenamiento</option>
         <option value="A-Z">A-Z</option>
         <option value="Z-A">Z-A</option>
       </select>
       <select className='orden' onChange={(e) => { handleHealthScore(e) }}>
-        <option value="healthScore">Nivel saludable</option>
+        <option value="nivel saludable">Nivel saludable</option>
+        <option value="asc">Acendente</option>
+        <option value="des">Desendente</option>
       </select>
       <select
         className='orden'
         onChange={(e) => handleFilterDiet(e)}
-      /* Llamar a la función handleFilter y pasar el evento como argumento. */
       >
         <option value="gluten free">gluten free</option>
         <option value="ketogenic">ketogenic</option>
@@ -30,8 +32,8 @@ export const NavBar = ({ handleHealthScore, handleFilterDiet, handleFilterOrder,
         <option value="whole 30">whole 30</option>
       </select>
       <select className='orden' onChange={(e) => { handleFilterCreate(e) }}>
-        <option value="crear">creado</option>
-        <option value="recetas">recetas</option>
+        <option value="all">recetas</option>
+        <option value="create">creado</option>
       </select>
     </div>
   )
