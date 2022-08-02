@@ -6,8 +6,19 @@
 }
 
 a {
-     /* margin-top: 6%; */
      font-family: url('../font/JetBrainsMono-Light.ttf');
+}
+
+body {
+     background-image: url(../img/img2.jpg);
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     background-position: center center;
+     background-size: cover;
+     backface-visibility: hidden;
+     padding: 0;
+     margin: 0;
+     height: 100%;
 }
 
 .form {
@@ -52,6 +63,19 @@ a {
      text-align: left;
 }
 
+.pasos {
+     margin: bottom 15px;
+     font-family: "Roboto", sans-serif;
+     width: 100%;
+     padding: 30px;
+     box-sizing: border-box;
+     border: none;
+     color: #525c66;
+     font-size: 1em;
+     resize: none;
+     text-align: left;
+}
+
 .botonCrear {
      background-color: #0095eb;
      padding: 10px 45px 10px 45px;
@@ -68,7 +92,7 @@ a {
 }
 
 .botonVolver {
-     background-color: #e7e7e7;
+     background-color: #9e0731;
      padding: 4px 25px 5px 25px;
      border: 0;
      font-size: 1em;
@@ -83,10 +107,15 @@ a {
 }
 
 .botonSelect {
-     background-color: white;
-     border: 0.2px solid #e7e7e7;
-     margin: 5px;
+     /* background-color: white; */
+     backdrop-filter: blur(10px);
+     border: none;
+     color: #fff;
+     margin: 2px;
+     width: 100px;
+     padding: 3px;
      position: fixed;
+     margin-left: 12.5rem;
 }
 
 .url {
@@ -101,4 +130,23 @@ a {
      font-size: 1em;
      resize: none;
      text-align: start;
+}
+
+.titulo {
+     font-size: 20px;
+     margin-top: 20px;
+     color: #fff;
+}
+
+.dietAdd {
+     padding: 1px;
+     border: none;
+     color: #fff;
+     backdrop-filter: blur(10px);
+     cursor: pointer;
+}
+
+.btnDelet {
+     border: none;
+     cursor: pointer;
 }

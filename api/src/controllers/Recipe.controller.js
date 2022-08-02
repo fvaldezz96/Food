@@ -1,5 +1,4 @@
 const axios = require('axios');
-// const { Op } = require('sequelize/types');
 const { Recipe, Diet } = require('../db');
 
 const allRecipes = async () => {

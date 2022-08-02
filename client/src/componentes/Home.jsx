@@ -13,15 +13,16 @@ import {
   filterByDieta,
   filterOrder,
   filterCreateRecipe,
-  filterHealthScore
+  filterHealthScore,
+  getDiet
 } from '../redux/index';
-
 
 export const Home = () => {
   // const create = CreateRecipe();
   const dispatch = useDispatch();
   /* Obtener el estado de la tienda redux.osea trae las recetas */
-  const todasLasRecetas = useSelector(state => state.recetas);
+  const todasLasRecetas = useSelector((state) => state.recetas);
+  const [order, setOrder] = useState("");
   // console.log(todasLasRecetas,'soy recetas de front');
   const [currentPage, setCurrentPage] = useState(1);//va a empezar en uno 
   const [currentRecipePage, setCurrentRecipePage] = useState(10);//recetas por apginas
@@ -30,9 +31,6 @@ export const Home = () => {
   const currentRecipe = todasLasRecetas.slice(indexFirst, indexEnd);
   //toma el indice del primero y del ultimo personaje.
 
-  const [order, setOrder] = useState("");
-
-  //esta me va a ayudar al renderisado .  
   const page = (np) => {
     setCurrentPage(np)
   }
@@ -40,7 +38,7 @@ export const Home = () => {
   const handleFilterDiet = (e) => {
     dispatch(filterByDieta(e.target.value))
     setCurrentPage(1);
-    //  setOrder(e.target.value);
+    setOrder(e.target.value);
   }
 
   const handleFilterOrder = (e) => {
@@ -48,17 +46,21 @@ export const Home = () => {
     setCurrentPage(1);
     setOrder(e.target.value);
   }
-
+  // const handleFilter = (e, funcion) => { 
+  //   dispatch(funcion(e.target.value))
+  //   setCurrentPage(1);
+  //   setOrder(e.target.value); // esto arregla la caca de codigo !!!!!!!
+  //  }
   const handleFilterCreate = (e) => {
     dispatch(filterCreateRecipe(e.target.value));
     setCurrentPage(1);
-    // setOrder(e.target.value);
+    setOrder(e.target.value);
   }
 
   const handleHealthScore = (e) => {
     dispatch(filterHealthScore(e.target.value));
     setCurrentPage(1);
-    // setOrder(e.target.value);
+    setOrder(e.target.value);
   }
   //  console.log(getRecipes)
   const handleClick = (e) => {
@@ -69,8 +71,8 @@ export const Home = () => {
 
   useEffect(() => {
     dispatch(getRecipes());
-    // dispatch(filterByDieta());
-  }, []); //paso el array basio por que no depende de nada!  
+    dispatch(getDiet()); 
+  }, []);
 
   return (
     <div>
@@ -113,7 +115,9 @@ export const Home = () => {
                 </Link>
               </div>
             )
-          })}
+          })
+          // : <p>Loanding...</p>
+        }
       </div>
     </div>
   )

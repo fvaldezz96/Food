@@ -9,15 +9,14 @@ export const SearchBar = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
 
-
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getNameRecipe(name));
     // console.log(getNameRecipe())
     setName("");
   }
 
-  function handleChange(e) {
+  const handleChange = (e) => {
     e.preventDefault();
     setName(e.target.value);
   }

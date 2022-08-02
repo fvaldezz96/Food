@@ -9,7 +9,8 @@ import {
    FILTER_ORDER,
    FILTER_HEALTHSCORE,
    FILTER_CREATE,
-   POST_RECIPE
+   POST_RECIPE,
+   GET_DIET
 } from './actions.js';
 // En este archivo meto la logica de las accios 
 //Ademas en este archivo va la coneccion de back con el front
@@ -67,6 +68,16 @@ export const filterByDieta = (payload) => {
       payload
    })
 }
+
+export const getDiet = () => {
+   return async function (dispatch) {
+      const dietData = await axios.get("http://localhost:3001/diet")
+      return dispatch({
+         type: GET_DIET,
+         payload: dietData.data
+      })
+   }
+};
 
 export const filterOrder = (payload) => {
    return ({

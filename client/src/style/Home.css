@@ -1,28 +1,30 @@
-/* body {
-   background-image: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
-   /* background-repeat: no-repeat;
+body {
+   background-image: url(../img/img.jpg);
+   background-repeat: no-repeat;
    background-attachment: fixed;
    background-position: center center;
    background-size: cover;
-} */
+   padding: 0;
+   margin: 0;
+}
 
 .navBar {
    background-color: #9e0731;
    color: #fff;
    padding: 0px 8px;
    position: -webkit-sticky;
-   position: sticky;
    top: 0px;
-   padding: 20px;
+   width: auto;
+   padding: 1.25rem;
    font-weight: bold;
 }
 
 .divs {
-   position: relative;
+   justify-content: center;
    align-items: center;
-   color: #fff;
    display: flex;
-   align-items: center;
+   margin-top: 20px;
+   color: #fff;
    flex-basis: 0%;
 }
 
@@ -30,22 +32,20 @@
    color: #fff;
    background-color: #9e0731;
    font-size: 14px;
-   padding: 5px 24px;
+   padding: 0.3125rem 1.5rem;
    text-align: center;
    border: none;
    margin: 4px;
 }
 
 .Card {
-   display: grid;
-   margin: 5rem 60px;
-   padding: 2rem 0;
+   margin: 5rem 3rem;
    flex-wrap: no-wrap;
    grid-template-columns: repeat(4, 1fr);
+   display: grid;
    align-items: center;
    justify-content: center;
    flex-direction: row;
-   padding: 3vh 0;
-   grid-gap: 1.5rem;
-   /* left: 20px */
+   padding: 0vh;
+   grid-gap: 1.2rem;
 }

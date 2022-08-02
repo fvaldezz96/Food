@@ -7,7 +7,8 @@ import {
    FILTER_ORDER,
    FILTER_HEALTHSCORE,
    FILTER_CREATE,
-   POST_RECIPE
+   POST_RECIPE,
+   GET_DIET
 } from './actions.js';
 
 let initialState = {
@@ -38,13 +39,13 @@ function rootReducer(state = initialState, action) {
       case GET_DETAIL_RECIPE:
          return {
             ...state,
-            detailRecipe: action.payload 
+            detailRecipe: action.payload
          }
       case FILTER_DIET:
          const dietCopy = state.allRecetas.filter((e) => e.diets.find((d) => d === action.payload));
          return {
             ...state,
-            recetas: dietCopy,
+            recetas: action.payload === 'all' ? state.allRecetas : dietCopy,
          }
       case FILTER_ORDER:
          const todo = state.recetas;
@@ -61,24 +62,21 @@ function rootReducer(state = initialState, action) {
          /* Devolviendo el estado y la matriz de recetas. */
          return {
             ...state,
-            recetas: sortArr,
+            recetas: action.payload === 'all' ? state.recetas : sortArr,
          }
 
       case FILTER_HEALTHSCORE:
          const niveles = state.recetas;
          const array = action.payload === "asc" ?
             niveles.sort((a, b) => {
-               if (a.healthScore > b.healthScore) return 1;
-               if (a.healthScore < b.healthScore) return -1;
-               return 0;
-            }) : niveles.sort((a, b) => {
-               if (a.healthScore > b.healthScore) return -1;
-               if (a.healthScore < b.healthScore) return 1;
-               return 0;
-            });
+               return a.healthScore - b.healthScore
+            }) :
+            niveles.sort((a, b) => {
+               return b.healthScore - a.healthScore
+            })
          return {
             ...state,
-            recetas: array,
+            recetas: array
          }
 
       case FILTER_CREATE:
@@ -96,6 +94,11 @@ function rootReducer(state = initialState, action) {
       case POST_RECIPE:
          return {
             ...state,
+         }
+      case GET_DIET:
+         return {
+            ...state,
+            diet: action.payload
          }
       default:
          return state;

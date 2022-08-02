@@ -1,13 +1,12 @@
 .numberContainer {
-   /* display: flex; */
-   justify-content: center;
-   height: 4vh;
-   /* background-color: #9e0731; */
+   height: 1vh;
    background-position: bottom;
    position: center;
-   z-index: 0;
+   justify-content: center;
    align-items: center;
+   z-index: 0;
    display: inline-block;
+   position: relative;
    padding: 0 3vw;
    cursor: pointer;
    margin-top: 1%;
@@ -15,7 +14,6 @@
 }
 
 .number {
-   background-color: black;
    font-weight: 700;
    font-size: large;
    margin: 1em;
@@ -30,6 +28,5 @@
 
 .general {
    background-color: #9e0731;
-   /* align-items: center;
-   display: inline-block; */
+   width: auto;
 }

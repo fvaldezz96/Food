@@ -1,5 +1,5 @@
 import React from 'react'
-import { postRecipe, filterByDieta } from '../redux/index';
+import { postRecipe, filterByDieta, getDiet } from '../redux/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
@@ -84,7 +84,7 @@ export const CreateRecipe = () => {
     setInput({
       ...input,
       /* Agregar el valor de la entrada a la matriz de dietas. */
-      diets: [...input.diet, e.target.value]
+      diet: [...input.diet, e.target.value]
     })
   }
 
@@ -92,21 +92,21 @@ export const CreateRecipe = () => {
     setInput({
       ...input,
       /* Está filtrando la matriz de dietas, eliminando la que coincide con el valor de `e`. */
-      diets: input.diet.filter((d) => d !== e)
+      diet: input.diet.filter((d) => d !== e)
     })
   }
 
-
   useEffect(() => {
     dispatch(filterByDieta());
+    dispatch(getDiet())
   }, [])
 
   return (
     <div>
+      {/* <div className='titulo'>Crea tu receta</div> */}
       <Link to='/home'>
         <button className='botonVolver'>volver</button>
       </Link>
-      <div className='titulo'>Crea tu receta</div>
       <form className="form" onSubmit={(e) => handleSubmit(e)}>
         <div>
           <input
@@ -133,6 +133,21 @@ export const CreateRecipe = () => {
         </div>
         <br />
         <div>
+          <input
+            className="input"
+            onChange={(e) => handleChange(e)}
+            type="number"
+            placeholder="Nivel saludable..."
+            value={input.healthScore}
+            // key={input.healthScore}
+            name="healthScore"
+            min="0"
+            max="100"
+          />
+          {errors.healthScore && <h4>{errors.healthScore}</h4>}
+        </div>
+           <br />
+        <div>
           <textarea
             className="descripcion"
             onChange={(e) => handleChange(e)}
@@ -147,22 +162,7 @@ export const CreateRecipe = () => {
         <br />
         <div>
           <input
-            className="input"
-            onChange={(e) => handleChange(e)}
-            type="number"
-            placeholder="Nivel saludable..."
-            value={input.healthScore}
-            // key={input.healthScore}
-            name="healthScore"
-            min="0"
-            max="100"
-          />
-          {errors.healthScore && <h4>{errors.healthScore}</h4>}
-        </div>
-        <br />
-        <div>
-          <input
-            className="input"
+            className="pasos"
             onChange={(e) => handleChange(e)}
             type="text"
             placeholder="Pasos..."
@@ -173,24 +173,21 @@ export const CreateRecipe = () => {
           {errors.steps && <h4>{errors.steps}</h4>}
         </div>
         <div>
+          <br />
           <select className="botonSelect" name='diet' onChange={(e) => handleSelect(e)}>
-            <option value="diet">
-              Dietas
-            </option>
+            <option value="diet">Dietas</option>
             {
-              dietasSeleccion?.map((e) => {
-                <option key={e.id} value={e.name}>
-                  {e.name}
-                </option>
-              })
+              dietasSeleccion?.map((e) => (
+                <option key={e.id} value={e.name}>{e.name}</option>
+              ))
             }
           </select>
         </div>
         {
           input.diet.map((e) => (
-            <div>
+            <div className='dietAdd'>
               <p>{e}</p>
-              <button onClick={() => { handleDelete(e) }}>X</button>
+              <button className='btnDelet' onClick={() => { handleDelete(e) }}>X</button>
             </div>
           ))}
         <div>

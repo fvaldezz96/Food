@@ -1,14 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400);
 
-/* .contenedorSearch {
-    display: flex;
-     align-items: center;
-     justify-content: center;
-     margin-top: 4%;
-} */
-
 .container-3 {
-     width: 200px;
+     width: 12.5rem;
      vertical-align: middle;
      white-space: nowrap;
      color: #fff;
@@ -17,8 +10,8 @@
 }
 
 .container-3 input#search {
-     width: 160px;
-     height: 30px;
+     width: 10rem;
+     height: 1.875rem;
      background: #9e0731;
      border: none;
      font-size: 10pt;
@@ -33,11 +26,9 @@
 }
 
 .botonIr {
-   /* padding: 10px 45px 10px 45px; */
      background-color: #9e0731;
      margin-top: 8px;
-     width: 600px;
-     height: 30px;
+     height: 1.875rem;
      margin-left: 1%;
      border: 0;
      font-size: 1em;
