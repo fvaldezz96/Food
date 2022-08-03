@@ -38,7 +38,7 @@ export const Home = () => {
   const handleFilterDiet = (e) => {
     dispatch(filterByDieta(e.target.value))
     setCurrentPage(1);
-    setOrder(e.target.value);
+    // setOrder(e.target.value);
   }
 
   const handleFilterOrder = (e) => {
@@ -49,7 +49,7 @@ export const Home = () => {
   // const handleFilter = (e, funcion) => { 
   //   dispatch(funcion(e.target.value))
   //   setCurrentPage(1);
-  //   setOrder(e.target.value); // esto arregla la caca de codigo !!!!!!!
+  //   setOrder(e.target.value); 
   //  }
   const handleFilterCreate = (e) => {
     dispatch(filterCreateRecipe(e.target.value));
@@ -71,7 +71,7 @@ export const Home = () => {
 
   useEffect(() => {
     dispatch(getRecipes());
-    dispatch(getDiet()); 
+    dispatch(getDiet());
   }, []);
 
   return (
@@ -111,6 +111,7 @@ export const Home = () => {
                     name={e.name}
                     image={e.image}
                     diets={e.diets}
+                    healthScore={e.healthScore}
                   />
                 </Link>
               </div>

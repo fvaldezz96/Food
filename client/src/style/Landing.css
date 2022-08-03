@@ -14,7 +14,8 @@
    background-attachment: fixed;
    background-position: center center;
    background-size: cover;
-   min-height: 100vh;
+   display: inline-block;
+   overflow-x: hidden; 
    padding: 0;
    margin: 0;
 }
@@ -31,9 +32,7 @@
    display: flex;
    justify-content: center;
    flex-wrap: wrap;
-   /* align horizontal */
    align-items: center;
-   /* align vertical */
 }
 
 a {
@@ -45,12 +44,11 @@ a {
    margin: auto;
    width: calc(11.40vw + 15px);
    height: calc(5vw + 8px);
-   background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, red 100%);
+   background-color: #fff;
    display: flex;
    align-items: center;
    cursor: pointer;
    border: none;
-   border-radius: 1rem;
    justify-content: center;
    text-transform: uppercase;
    font-size: 1.45vw;
@@ -70,7 +68,7 @@ a {
 }
 
 .CTA:hover {
-   animation: slidebg 2s linear infinite;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);;
 }
 
 @keyframes slidebg {

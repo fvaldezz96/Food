@@ -8,40 +8,37 @@ import '../style/DetailRecipe.css';
 export const DetailRecipe = (props) => {
 
   const dispatch = useDispatch();
-  const { id } = props.match.params
-  /* Una forma de obtener la identificación de la url. */
+  const { id } = props.match.params // se puede traer con useParams()
   const recipeDetail = useSelector(state => state.detailRecipe)
-  console.log(recipeDetail, 'soy el front(stado)');
+  // console.log(recipeDetail, 'soy el front(stado)');
 
   useEffect(() => {
     dispatch(getDetailRecipe(id));
   }, [dispatch, id]);
-  /* Una matriz de dependencia. Se usa para decirle a React que su efecto depende de props.id y
-    dispatch y que debe volver a ejecutarse cuando props.id o dispatch cambien. */
 
   return (
     <div>
       <Link to='/home'>
-        <button>volver</button>
+        <button className='btn back'>volver</button>
       </Link>
-      <div>
+      <div className='detail'>
         {
           recipeDetail ? (
             <div>
-              <p>{recipeDetail.name}</p>
+              <p className='nameTitle'>{recipeDetail.name}</p>
               <div>
                 <img
+                  className='image'
                   src={
                     recipeDetail.image ||
                     "https://www.acbar.org/Website/Loader/loader3.gif"
                   }
                 />
               </div>
-              {/* <p >tipo de plato</p> */}
-              <p >{recipeDetail.diets?.map((e) => e.name).join(", ")}</p>
-              <p >{recipeDetail.summary}</p>
-              <p >{recipeDetail.steps?.map((e) => e.step)}</p>
-              <p >{recipeDetail.healthScore}</p>
+              <p className='p'>{recipeDetail.diets?.map((e) => e.name).join(", ")}</p>
+              <p className='p'>{recipeDetail.summary?.replace(/<[^>]+>/g, '')}</p>
+              <p className='p'>{recipeDetail.steps?.map((e) => e.step)}</p>
+              <p className='p'>{recipeDetail.healthScore}</p>
             </div>
           ) : (
             <h5>no hay detalles de esta receta</h5>

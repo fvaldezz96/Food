@@ -42,7 +42,7 @@ function rootReducer(state = initialState, action) {
             detailRecipe: action.payload
          }
       case FILTER_DIET:
-         const dietCopy = state.allRecetas.filter((e) => e.diets.find((d) => d === action.payload));
+         const dietCopy = state.allRecetas.filter((e) => e.diets.map((d) => d.name === action.payload));
          return {
             ...state,
             recetas: action.payload === 'all' ? state.allRecetas : dietCopy,

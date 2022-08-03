@@ -33,15 +33,13 @@ const allDb = async () => {
          summary: e.summary,
          healthScore: e.healthScore,
          image: e.image,
-         diets: e.diets.map(e => e.name),
-         /* Asignación de la matriz de dietas a una matriz de nombres. */
+         diets: e.diets.map((e) => e.name),
          steps: e.steps
       }));
       return allData;
    } catch (error) {
       console.log(error)
    }
-   // console.log(allData, 'soy el db de allDb');
 }
 
 //en esta funcion haciendo el contac puedo consumir datos de al api y db 
@@ -95,8 +93,8 @@ const createRecipe = async (req, res) => {
    try {
       let { name, summary, healthScore, image, steps, diets } = req.body
       if (!name || !summary) return res.send('Faltan datos')
-      let newRecipe = await Recipe.create({ name, summary, healthScore, image, steps })
-      let dietsPromise = await diets.map(async (e) => await Diet.findOne({ where: { name: e } }))
+      let newRecipe = await Recipe.findOrCreate({ name, summary, healthScore, image, steps })
+      let dietsPromise = await diets.map(async (e) => await Diet.findAll({ where: { name: e } }))
       let dietsFinal = await Promise.all(dietsPromise)
       newRecipe.addDiets(dietsFinal)
       res.send(newRecipe)
