@@ -8,8 +8,8 @@ import '../style/DetailRecipe.css';
 export const DetailRecipe = (props) => {
 
   const dispatch = useDispatch();
-  const { id } = props.match.params // se puede traer con useParams()
-  const recipeDetail = useSelector(state => state.detailRecipe)
+  const { id } = props.match.params;
+  const recipeDetail = useSelector(state => state.detailRecipe);
   // console.log(recipeDetail, 'soy el front(stado)');
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export const DetailRecipe = (props) => {
           recipeDetail ? (
             <div>
               <p className='nameTitle'>{recipeDetail.name}</p>
-              <div className='image'>
+              <div>
                 <img
                   alt='img not found'
                   className='image'
@@ -38,7 +38,7 @@ export const DetailRecipe = (props) => {
               </div>
               <p className='p'>{recipeDetail.diets?.map((e) => e.name).join(", ")}</p>
               <p className='p'>{recipeDetail.summary?.replace(/<[^>]+>/g, '')}</p>
-              <p className='p'>{recipeDetail.steps?.map((e) => e.step)}</p>
+              <p className='p'>{recipeDetail.steps}</p>
               <p className='p'>{recipeDetail.healthScore}</p>
             </div>
           ) : (

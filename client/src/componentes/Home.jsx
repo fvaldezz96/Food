@@ -22,9 +22,9 @@ export const Home = () => {
   const todasLasRecetas = useSelector((state) => state.recetas);
   // eslint-disable-next-line
   const [order, setOrder] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);//va a empezar en uno 
+  const [currentPage, setCurrentPage] = useState(1);
   // eslint-disable-next-line
-  const [currentRecipePage, setCurrentRecipePage] = useState(10);//recetas por apginas
+  const [currentRecipePage, setCurrentRecipePage] = useState(10);
   const indexEnd = currentPage * currentRecipePage;//10
   const indexFirst = indexEnd - currentRecipePage;//0
   const currentRecipe = todasLasRecetas.slice(indexFirst, indexEnd);
@@ -34,21 +34,20 @@ export const Home = () => {
   }
 
   const handleFilterDiet = (e) => {
+    e.preventDefault();
     dispatch(filterByDieta(e.target.value))
     setCurrentPage(1);
   }
 
   const handleFilterOrder = (e) => {
+    e.preventDefault();
     dispatch(filterOrder(e.target.value))
     setCurrentPage(1);
     setOrder(e.target.value);
   }
-  // const handleFilter = (e, funcion) => { 
-  //   dispatch(funcion(e.target.value))
-  //   setCurrentPage(1);
-  //   setOrder(e.target.value); 
-  //  }
+
   const handleFilterCreate = (e) => {
+    e.preventDefault();
     dispatch(filterCreateRecipe(e.target.value));
     setCurrentPage(1);
     setOrder(e.target.value);
@@ -98,10 +97,9 @@ export const Home = () => {
       </div>
       <div className='Card'>
         {
-          currentRecipe?.map((e, index) => {
+          currentRecipe ? currentRecipe.map((e, index) => {
             return (
               <div key={index}>
-                { /* Creación de un enlace a la página de detalles de la receta. */}
                 <Link to={`/detail/${e.id}`}>
                   <Card
                     name={e.name}
@@ -113,7 +111,7 @@ export const Home = () => {
               </div>
             )
           })
-          // : <p>Loanding...</p>
+          : <p>Loanding...</p>
         }
       </div>
     </div>
@@ -121,3 +119,8 @@ export const Home = () => {
 }
 
 
+  // const handleFilter = (e, funcion) => { 
+  //   dispatch(funcion(e.target.value))
+  //   setCurrentPage(1);
+  //   setOrder(e.target.value); 
+  //  }

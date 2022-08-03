@@ -23,7 +23,8 @@ body {
    background-attachment: fixed;
    background-position: center center;
    background-size: cover;
-   /* height: 150rem; */
-  /*  padding: 0;
-   margin: 0; */
+}
+
+a{
+   text-decoration: none;
 }

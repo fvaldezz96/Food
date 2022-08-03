@@ -34,6 +34,7 @@ export const CreateRecipe = () => {
     name: "",
     summary: "",
     healthScore: "",
+    image: "",
     steps: "",
     diet: []
   });
@@ -52,6 +53,7 @@ export const CreateRecipe = () => {
       setInput({
         name: "",
         summary: "",
+        image: "",
         healthScore: "",
         steps: "",
         diet: []
@@ -79,10 +81,12 @@ export const CreateRecipe = () => {
   };
 
   const handleSelect = (e) => {
-    setInput({
-      ...input,
-      diet: [...input.diet, e.target.value]
-    })
+    if (!input.diet.find((i) => i === e.target.value)) {
+      setInput({
+        ...input,
+        diet: [...input.diet, e.target.value]
+      })
+    }
   }
 
   const handleDelete = (e) => {
@@ -120,8 +124,8 @@ export const CreateRecipe = () => {
           <input
             className="url"
             type="url"
-            name="background_image"
-            id="background_image"
+            name="image"
+            id="image"
             value={input.background_image}
             placeholder="URL"
             onChange={(e) => handleChange(e)}
@@ -158,6 +162,7 @@ export const CreateRecipe = () => {
         <br />
         <div>
           <input
+            autoComplete="false"
             className="pasos"
             onChange={(e) => handleChange(e)}
             type="text"
@@ -182,10 +187,10 @@ export const CreateRecipe = () => {
           </select>
         </div>
         {
-          input.diet.map((e) => (
+          input.diet.map((a) => (
             <div className='dietAdd'>
-              <p>{e}</p>
-              <button className='btnDelet' onClick={() => { handleDelete(e) }}>X</button>
+              <p>{a}</p>
+              <button type='button' className='btnDelet' onClick={() => { handleDelete(a) }}>x</button>
             </div>
           ))}
         <div>

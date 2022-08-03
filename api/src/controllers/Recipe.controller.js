@@ -6,7 +6,7 @@ const allRecipes = async () => {
    const typeRecipes = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&addRecipeInformation=true&number=20`)).data.results;
    const mapeoRecipes = typeRecipes.map((e) => ({
       id: e.id,
-      name: e.sourceName ? e.sourceName : e.title,
+      name: e.title ? e.title : e.sourceName,
       steps: e.analyzedInstructions[0]?.steps.map(e => ({ number: e.number, step: e.step })),
       summary: e.summary,
       healthScore: e.healthScore,
@@ -92,11 +92,12 @@ const getId = async (req, res) => {
 const createRecipe = async (req, res) => {
    try {
       let { name, summary, healthScore, image, steps, diets } = req.body
+      // console.log(diets, 'soy las diets')
       if (!name || !summary) return res.send('Faltan datos')
       let newRecipe = await Recipe.create({ name, summary, healthScore, image, steps })
-      let dietsPromise = await diets.map(async (e) => await Diet.findAll({ where: { name: e } }))
-      let dietsFinal = await Promise.all(dietsPromise)
-      newRecipe.addDiets(dietsFinal)
+      let dietsPromise = await Diet.findAll({ where: { name: diets } })
+      // console.log(dietsPromise, 'soy el final')
+      newRecipe.addDiets(dietsPromise)//dietsFinal
       res.send(newRecipe)
    } catch (error) {
       console.log(error)

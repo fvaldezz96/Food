@@ -2,11 +2,6 @@
 // const axios = require('axios');
 const { Diet } = require('../db');
 
-/**
- * Crea una nueva fila en la base de datos para cada uno de los objetos en la matriz de tipos.
- * @param req - El objeto de la solicitud.
- * @param res - El objeto de respuesta.
- */
 const getAllDiet = async (req, res) => {
 
    try {
