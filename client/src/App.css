@@ -17,12 +17,13 @@
    }
 }
 
-.App-header {
-   min-height: 100vh;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   font-size: calc(10px + 2vmin);
-   /* color: white; */
+body {
+   background-image: url(./img/img.jpg);
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-position: center center;
+   background-size: cover;
+   /* height: 150rem; */
+  /*  padding: 0;
+   margin: 0; */
 }

@@ -17,7 +17,7 @@ export const Landing = () => {
                   <div>
                      <h1 className='tituloPagina'>Bienvenido</h1>
                   </div>
-                  <a href='/home/' className="btn btn-default CTA" alt="Inicio" onClick={() => { history.push('/home') }}> </a>
+                  <button href='/home/' className="btn btn-default CTA" alt="Inicio" onClick={() => { history.push('/home') }}> </button>
                   <div className="sub">
                      <p></p>
                   </div>

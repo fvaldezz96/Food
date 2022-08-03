@@ -17,7 +17,7 @@ export const DetailRecipe = (props) => {
   }, [dispatch, id]);
 
   return (
-    <div>
+    <div className='container'>
       <Link to='/home'>
         <button className='btn back'>volver</button>
       </Link>
@@ -26,7 +26,7 @@ export const DetailRecipe = (props) => {
           recipeDetail ? (
             <div>
               <p className='nameTitle'>{recipeDetail.name}</p>
-              <div>
+              <div className='image'>
                 <img
                   alt='img not found'
                   className='image'

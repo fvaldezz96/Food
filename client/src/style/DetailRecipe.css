@@ -1,3 +1,32 @@
+.container {
+   display: grid;
+   align-items: center;
+   justify-content: center;
+   flex-direction: row;
+}
+
+.detail {
+   width: 50rem;
+   height: 40rem;
+   align-items: center;
+   justify-content: center;
+   backdrop-filter: blur(10px);
+   display: flex;
+   flex-direction: row;
+   position: relative;
+   margin: 2rem 0;
+   margin-top: 0;
+   padding: 2rem 0;
+   text-align: center;
+   border: solid 0.1px;
+   z-index: 2;
+   transition: transform .2s;
+}
+
+.detail:hover {
+   transform: scale(1.1);
+}
+
 .back {
    background-color: #9e0731;
    padding: 4px 25px 5px 25px;
@@ -6,7 +35,8 @@
    color: white;
    font-family: "Roboto", sans-serif;
    position: center;
-   margin-top: 30px;
+   margin-bottom: 15px;
+   margin-top: 15px;
 }
 
 .back:hover {
@@ -17,11 +47,17 @@
 /* .detail{
 } */
 
-.nameTitle{
+.nameTitle {
+   margin-bottom: 40px;
    color: #fff;
    font-size: 27px;
 }
 
-.p{
+.p {
    color: #fff;
+   margin: 10px;
 }
+
+/* .image{
+   width: 7rem;
+} */
