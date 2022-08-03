@@ -65,13 +65,11 @@ export const CreateRecipe = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    /* `e.target` es el elemento que desencadenó el evento. */
     setInput({
       ...input,
       [name]: value
     })
-    /* Copiar el estado actual de `input` y luego actualizar el valor de la propiedad que coincide con
-   el `name` de la entrada que se cambió. */
+
     setErrors(
       validations({
         ...input,
@@ -83,7 +81,6 @@ export const CreateRecipe = () => {
   const handleSelect = (e) => {
     setInput({
       ...input,
-      /* Agregar el valor de la entrada a la matriz de dietas. */
       diet: [...input.diet, e.target.value]
     })
   }
@@ -91,7 +88,6 @@ export const CreateRecipe = () => {
   const handleDelete = (e) => {
     setInput({
       ...input,
-      /* Está filtrando la matriz de dietas, eliminando la que coincide con el valor de `e`. */
       diet: input.diet.filter((d) => d !== e)
     })
   }
@@ -99,11 +95,10 @@ export const CreateRecipe = () => {
   useEffect(() => {
     dispatch(filterByDieta());
     dispatch(getDiet())
-  }, [])
+  }, [dispatch])
 
   return (
     <div>
-      {/* <div className='titulo'>Crea tu receta</div> */}
       <Link to='/home'>
         <button className='botonVolver'>volver</button>
       </Link>
@@ -115,8 +110,8 @@ export const CreateRecipe = () => {
             type="text"
             placeholder="Nombre..."
             name="name"
+            id="name"
             value={input.name}
-          // key={input.name}
           />
           {errors.name && <h4>{errors.name}</h4>}
         </div>
@@ -126,6 +121,7 @@ export const CreateRecipe = () => {
             className="url"
             type="url"
             name="background_image"
+            id="background_image"
             value={input.background_image}
             placeholder="URL"
             onChange={(e) => handleChange(e)}
@@ -139,14 +135,14 @@ export const CreateRecipe = () => {
             type="number"
             placeholder="Nivel saludable..."
             value={input.healthScore}
-            // key={input.healthScore}
             name="healthScore"
+            id="healthScore"
             min="0"
             max="100"
           />
           {errors.healthScore && <h4>{errors.healthScore}</h4>}
         </div>
-           <br />
+        <br />
         <div>
           <textarea
             className="descripcion"
@@ -154,8 +150,8 @@ export const CreateRecipe = () => {
             type="text"
             placeholder="Descripcion..."
             value={input.summary}
-            // key={input.summary}
             name="summary"
+            id="summary"
           />
           {errors.summary && <h4>{errors.summary}</h4>}
         </div>
@@ -167,8 +163,8 @@ export const CreateRecipe = () => {
             type="text"
             placeholder="Pasos..."
             value={input.steps}
-            // key={input.steps}
             name="steps"
+            id="steps"
           />
           {errors.steps && <h4>{errors.steps}</h4>}
         </div>
@@ -177,9 +173,11 @@ export const CreateRecipe = () => {
           <select className="botonSelect" name='diet' onChange={(e) => handleSelect(e)}>
             <option value="diet">Dietas</option>
             {
-              dietasSeleccion?.map((e) => (
-                <option key={e.id} value={e.name}>{e.name}</option>
-              ))
+              dietasSeleccion?.map((e, index) => {
+                return (
+                  <option key={index} value={e.name}>{e.name}</option>
+                )
+              })
             }
           </select>
         </div>

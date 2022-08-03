@@ -24,11 +24,11 @@ const getAllDiet = async (req, res) => {
          { name: 'whole 30' }
       ]
       // await Diet.bulkCreate(types); // de esta manera cada ves que hago un llamado estoy creando recetas con estos nombres .
-      const insertDiet = types.map(async (e) => await Diet.findOrCreate({ whre: e }))
+      const insertDiet = types.map(async (e) => await Diet.findOrCreate({ where: e }))
       // const db = await Diet.findAll();
       await Promise.all(insertDiet);
-      const db = await Diet.findAll();
-      res.status(200).send(db)
+      const dbDiet = await Diet.findAll();
+      res.send(dbDiet)
    } catch (error) {
       console.log(error)
    }

@@ -28,6 +28,7 @@ export const DetailRecipe = (props) => {
               <p className='nameTitle'>{recipeDetail.name}</p>
               <div>
                 <img
+                  alt='img not found'
                   className='image'
                   src={
                     recipeDetail.image ||

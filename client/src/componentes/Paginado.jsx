@@ -13,7 +13,7 @@ export const Paginado = ({ currentRecipePage, todasLasRecetas, page }) => {
         <div>
           {
             numberPage?.map((e) => (
-              <a className="number" key={e} onClick={() => page(e)}>{e}</a>
+              <button className="number" key={e} onClick={() => page(e)}>{e}</button>
             ))
           }
         </div>

@@ -93,7 +93,7 @@ const createRecipe = async (req, res) => {
    try {
       let { name, summary, healthScore, image, steps, diets } = req.body
       if (!name || !summary) return res.send('Faltan datos')
-      let newRecipe = await Recipe.findOrCreate({ name, summary, healthScore, image, steps })
+      let newRecipe = await Recipe.create({ name, summary, healthScore, image, steps })
       let dietsPromise = await diets.map(async (e) => await Diet.findAll({ where: { name: e } }))
       let dietsFinal = await Promise.all(dietsPromise)
       newRecipe.addDiets(dietsFinal)

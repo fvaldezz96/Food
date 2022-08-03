@@ -14,7 +14,7 @@ export const NavBar = ({ handleHealthScore, handleFilterDiet, handleFilterOrder,
         <option value="Z-A">Z-A</option>
       </select>
       <select className='orden' onChange={(e) => { handleHealthScore(e) }}>
-        <option value="nivel saludable">Nivel saludable</option>
+        <option value="nivel">Nivel saludable</option>
         <option value="asc">Acendente</option>
         <option value="des">Desendente</option>
       </select>
@@ -31,21 +31,9 @@ export const NavBar = ({ handleHealthScore, handleFilterDiet, handleFilterOrder,
 
       </select>
       <select className='orden' onChange={(e) => { handleFilterCreate(e) }}>
-        <option value="all">recetas</option>
-        <option value="create">creado</option>
+        <option value="all">Recetas</option>
+        <option value="create">Creado</option>
       </select>
     </div>
   )
 }
-
-{/* <option value="gluten free">gluten free</option>
-        <option value="ketogenic">ketogenic</option>
-        <option value="vegetarian">vegetarian</option>
-        <option value="lacto vegetarian">lacto vegetarian</option>
-        <option value="ovo vegetarian">ovo vegetarian</option>
-        <option value="vegan">vegan</option>
-        <option value="pescetarian">pescetarian</option>
-        <option value="paleo">paleo</option>
-        <option value="primal">primal</option>
-        <option value="low fodmap">low fodmap</option>
-        <option value="whole 30">whole 30</option> */}

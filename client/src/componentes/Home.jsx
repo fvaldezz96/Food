@@ -18,18 +18,16 @@ import {
 } from '../redux/index';
 
 export const Home = () => {
-  // const create = CreateRecipe();
   const dispatch = useDispatch();
-  /* Obtener el estado de la tienda redux.osea trae las recetas */
   const todasLasRecetas = useSelector((state) => state.recetas);
+  // eslint-disable-next-line
   const [order, setOrder] = useState("");
-  // console.log(todasLasRecetas,'soy recetas de front');
   const [currentPage, setCurrentPage] = useState(1);//va a empezar en uno 
+  // eslint-disable-next-line
   const [currentRecipePage, setCurrentRecipePage] = useState(10);//recetas por apginas
   const indexEnd = currentPage * currentRecipePage;//10
   const indexFirst = indexEnd - currentRecipePage;//0
   const currentRecipe = todasLasRecetas.slice(indexFirst, indexEnd);
-  //toma el indice del primero y del ultimo personaje.
 
   const page = (np) => {
     setCurrentPage(np)
@@ -38,7 +36,6 @@ export const Home = () => {
   const handleFilterDiet = (e) => {
     dispatch(filterByDieta(e.target.value))
     setCurrentPage(1);
-    // setOrder(e.target.value);
   }
 
   const handleFilterOrder = (e) => {
@@ -62,17 +59,16 @@ export const Home = () => {
     setCurrentPage(1);
     setOrder(e.target.value);
   }
-  //  console.log(getRecipes)
+  //  console.log(dispatch)
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(getRecipes())
-    // setOrder();
   }
 
   useEffect(() => {
     dispatch(getRecipes());
     dispatch(getDiet());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>

@@ -42,7 +42,7 @@ function rootReducer(state = initialState, action) {
             detailRecipe: action.payload
          }
       case FILTER_DIET:
-         const dietCopy = state.allRecetas.filter((e) => e.diets.map((d) => d.name === action.payload));
+         let dietCopy = state.allRecetas.filter(e => e.diets.find(i => i.includes(action.payload) )) //primero filtra todas las recetas y despues busca en la propiedad diets aquello que incluya el payload
          return {
             ...state,
             recetas: action.payload === 'all' ? state.allRecetas : dietCopy,
@@ -50,7 +50,7 @@ function rootReducer(state = initialState, action) {
       case FILTER_ORDER:
          const todo = state.recetas;
          const sortArr = action.payload === "A-Z" ?
-            todo.sort((a, b) => {
+            todo.sort((a, b) => { 
                if (a.name > b.name) return 1;
                if (b.name > a.name) return - 1;
                return 0
@@ -76,14 +76,13 @@ function rootReducer(state = initialState, action) {
             })
          return {
             ...state,
-            recetas: array
+            recetas: action.payload === 'nivel' ? state.recetas : array
          }
 
       case FILTER_CREATE:
          const todas = state.allRecetas
          const filterRecipe = action.payload === "create"
             // console.log(todas,'soy el todas')
-            // console.log(action.payload,'soy el action payload')
             ? todas.filter((e) => e.id.length > 10)//UUID
             : todas.filter((e) => !e.id.length <= 6)//ID
          // console.log(state.allRecetas)
