@@ -36,9 +36,9 @@ export const DetailRecipe = (props) => {
                   }
                 />
               </div>
-              <p className='p'>{recipeDetail.diets?.map((e) => e.name).join(", ")}</p>
               <p className='p'>{recipeDetail.summary?.replace(/<[^>]+>/g, '')}</p>
               <p className='p'>{recipeDetail.steps}</p>
+              <p className='p'>{recipeDetail.diets?.map((e) => e.name).join(", ")}</p>
               <p className='p'>{recipeDetail.healthScore}</p>
             </div>
           ) : (

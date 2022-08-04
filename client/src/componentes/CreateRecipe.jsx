@@ -36,7 +36,7 @@ export const CreateRecipe = () => {
     healthScore: "",
     image: "",
     steps: "",
-    diet: []
+    diets: []
   });
 
   const handleSubmit = (e) => {
@@ -56,7 +56,7 @@ export const CreateRecipe = () => {
         image: "",
         healthScore: "",
         steps: "",
-        diet: []
+        diets: []
       })
       history.push('/home');
     } else {
@@ -81,10 +81,10 @@ export const CreateRecipe = () => {
   };
 
   const handleSelect = (e) => {
-    if (!input.diet.find((i) => i === e.target.value)) {
+    if (!input.diets.find((i) => i === e.target.value)) {
       setInput({
         ...input,
-        diet: [...input.diet, e.target.value]
+        diets: [...input.diets, e.target.value]
       })
     }
   }
@@ -92,7 +92,7 @@ export const CreateRecipe = () => {
   const handleDelete = (e) => {
     setInput({
       ...input,
-      diet: input.diet.filter((d) => d !== e)
+      diets: input.diets.filter((d) => d !== e)
     })
   }
 
@@ -126,7 +126,7 @@ export const CreateRecipe = () => {
             type="url"
             name="image"
             id="image"
-            value={input.background_image}
+            value={input.image}
             placeholder="URL"
             onChange={(e) => handleChange(e)}
           />
@@ -175,8 +175,8 @@ export const CreateRecipe = () => {
         </div>
         <div>
           <br />
-          <select className="botonSelect" name='diet' onChange={(e) => handleSelect(e)}>
-            <option value="diet">Dietas</option>
+          <select className="botonSelect" name='diets' onChange={(e) => handleSelect(e)}>
+            <option value="diets">Dietas</option>
             {
               dietasSeleccion?.map((e, index) => {
                 return (
@@ -187,7 +187,7 @@ export const CreateRecipe = () => {
           </select>
         </div>
         {
-          input.diet.map((a) => (
+          input.diets.map((a) => (
             <div className='dietAdd'>
               <p>{a}</p>
               <button type='button' className='btnDelet' onClick={() => { handleDelete(a) }}>x</button>

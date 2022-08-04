@@ -3,7 +3,7 @@ const { Recipe, Diet } = require('../db');
 
 const allRecipes = async () => {
 
-   const typeRecipes = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&addRecipeInformation=true&number=20`)).data.results;
+   const typeRecipes = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&addRecipeInformation=true&number=100`)).data.results;
    const mapeoRecipes = typeRecipes.map((e) => ({
       id: e.id,
       name: e.title ? e.title : e.sourceName,
@@ -18,22 +18,16 @@ const allRecipes = async () => {
 
 const allDb = async () => {
    try {
-      /* Obtener todas las recetas de la base de datos e incluir el nombre de la dietsa. */
       const db = await Recipe.findAll({
-         include: {
-            model: Diet,
-            attributes: ["name"],
-            through: { attributes: [] },
-         }
+         include: { model: Diet, attributes: ["name"] }
       });
-      /* Incluido el modelo Dieta y solo el nombre del atributo. */
       const allData = db.map((e) => ({
          id: e.id,
          name: e.name,
          summary: e.summary,
          healthScore: e.healthScore,
          image: e.image,
-         diets: e.diets.map((e) => e.name),
+         diets: e.diets.map((i) => i.name),
          steps: e.steps
       }));
       return allData;
@@ -91,23 +85,55 @@ const getId = async (req, res) => {
 //funcion para crear la receta desde el formulario .
 const createRecipe = async (req, res) => {
    try {
+      console.log(req.body)
       let { name, summary, healthScore, image, steps, diets } = req.body
-      // console.log(diets, 'soy las diets')
-      if (!name || !summary) return res.send('Faltan datos')
+
+      if (!name || !summary) return res.send('Data is missing')
       let newRecipe = await Recipe.create({ name, summary, healthScore, image, steps })
-      let dietsPromise = await Diet.findAll({ where: { name: diets } })
-      // console.log(dietsPromise, 'soy el final')
-      newRecipe.addDiets(dietsPromise)//dietsFinal
+
+      let dietsPromise = diets.map(async (e) => await Diet.findOne({ where: { name: e } }))
+      let dietsFinal = await Promise.all(dietsPromise)
+      newRecipe.addDiet(dietsFinal)//
       res.send(newRecipe)
+
    } catch (error) {
       console.log(error)
       res.send("It haven't created")
    }
 };
 
+const deleteRecipe = async (req, res) => {
+   try {
+      const { id } = req.params;
+      await Recipe.destroy({ where: { id } })
+      res.send('borrar')
+   } catch (error) {
+      console.log(error)
+      res.send('no se pudo borrar')
+   }
+}
+
+// const updateRecipe = async (req, res) => {
+//    try {
+//       const { id } = req.params;
+//       const { name, summary, healthScore, steps, diets } = req.body;
+//       if (!name || !summary) return res.send('faltan propiedades')
+//       await Recipe.update({ name, summary, healthScore, steps }, { where: { id } })
+//       const recetas = await Recipe.findOne({ where: { id } })
+//       const dietas = await diets.map(async (e) => await Diet.findOne({ where: { name: e } }))
+//       const final = await Promise.all(dietas)
+//       recetas.addDiet(final)
+//       res.send(recetas)
+//    } catch (error) {
+//       console.log(error)
+//       res.send('no se pudo modificar la receta')
+//    }
+// }
+
 module.exports = {
    getApiandDb,
    getNames,
    getId,
-   createRecipe
+   createRecipe,
+   deleteRecipe
 }

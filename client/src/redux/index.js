@@ -9,7 +9,8 @@ import {
    FILTER_HEALTHSCORE,
    FILTER_CREATE,
    POST_RECIPE,
-   GET_DIET
+   GET_DIET,
+   CLEAN
 } from './actions.js';
 // En este archivo meto la logica de las accios 
 //Ademas en este archivo va la coneccion de back con el front
@@ -112,3 +113,8 @@ export const postRecipe = (payload) => {
    }
 }
 
+export const clean = () => {
+   return {
+      type: CLEAN
+   }
+}

@@ -14,7 +14,8 @@ import {
   filterOrder,
   filterCreateRecipe,
   filterHealthScore,
-  getDiet
+  getDiet,
+  clean
 } from '../redux/index';
 
 export const Home = () => {
@@ -67,11 +68,15 @@ export const Home = () => {
   useEffect(() => {
     dispatch(getRecipes());
     dispatch(getDiet());
+    return dispatch(clean())
   }, [dispatch]);
 
   return (
     <div>
       <div className='navBar'>
+      <Link to='/'>
+          <button className='navs'>Inicio</button>
+          </Link>
         <div className='divs'>
           <NavBar className='navs'
             handleFilterDiet={handleFilterDiet}
@@ -80,11 +85,12 @@ export const Home = () => {
             handleHealthScore={handleHealthScore}
           />
           <Link to='/create'>
-            <button className='navs'>crear</button>
+            <button className='navs'>Crear</button>
           </Link>
           <button className='navs' onClick={(e) => { handleClick(e) }}>
-            actualizar
+            Actualizar
           </button>
+          
           <SearchBar className='navs' />
         </div>
       </div>

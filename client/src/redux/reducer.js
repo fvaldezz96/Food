@@ -8,7 +8,8 @@ import {
    FILTER_HEALTHSCORE,
    FILTER_CREATE,
    POST_RECIPE,
-   GET_DIET
+   GET_DIET,
+   CLEAN
 } from './actions.js';
 
 let initialState = {
@@ -42,7 +43,7 @@ function rootReducer(state = initialState, action) {
             detailRecipe: action.payload
          }
       case FILTER_DIET:
-         let dietCopy = state.allRecetas.filter(e => e.diets.find(i => i.includes(action.payload) )) //primero filtra todas las recetas y despues busca en la propiedad diets aquello que incluya el payload
+         let dietCopy = state.allRecetas.filter(e => e.diets.find(i => i.includes(action.payload))) //primero filtra todas las recetas y despues busca en la propiedad diets aquello que incluya el payload
          return {
             ...state,
             recetas: action.payload === 'all' ? state.allRecetas : dietCopy,
@@ -50,7 +51,7 @@ function rootReducer(state = initialState, action) {
       case FILTER_ORDER:
          const todo = state.recetas;
          const sortArr = action.payload === "A-Z" ?
-            todo.sort((a, b) => { 
+            todo.sort((a, b) => {
                if (a.name > b.name) return 1;
                if (b.name > a.name) return - 1;
                return 0
@@ -62,7 +63,7 @@ function rootReducer(state = initialState, action) {
          /* Devolviendo el estado y la matriz de recetas. */
          return {
             ...state,
-            recetas: action.payload === 'all' ? state.recetas : sortArr,
+            recetas: action.payload === 'all' ? todo : sortArr,
          }
 
       case FILTER_HEALTHSCORE:
@@ -98,6 +99,12 @@ function rootReducer(state = initialState, action) {
          return {
             ...state,
             diet: action.payload
+         }
+      case CLEAN:
+         return {
+            ...state,
+            recetas: [],
+            // detailRecipe: {}
          }
       default:
          return state;
