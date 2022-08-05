@@ -50,10 +50,11 @@ export const getDetailRecipe = (id) => {
    return async (dispatch) => {
       try {
          const detalle = await axios.get(`http://localhost:3001/recipe/${id}`);
-         // console.log(detalle, 'soy el detalle');
+         console.log(detalle.data, 'soy el detalle');
          return dispatch({
             type: GET_DETAIL_RECIPE,
             payload: detalle.data
+         
          })
       } catch (error) {
          console.log(error)

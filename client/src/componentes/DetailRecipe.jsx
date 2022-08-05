@@ -10,7 +10,7 @@ export const DetailRecipe = (props) => {
   const dispatch = useDispatch();
   const { id } = props.match.params;
   const recipeDetail = useSelector(state => state.detailRecipe);
-  // console.log(recipeDetail, 'soy el front(stado)');
+  console.log(recipeDetail, 'soy el front(stado)');
 
   useEffect(() => {
     dispatch(getDetailRecipe(id));
@@ -21,9 +21,10 @@ export const DetailRecipe = (props) => {
       <Link to='/home'>
         <button className='btn back'>volver</button>
       </Link>
+    
       <div className='detail'>
         {
-          recipeDetail ? (
+          Object.keys(recipeDetail).length > 0 ? (
             <div>
               <p className='nameTitle'>{recipeDetail.name}</p>
               <div>
@@ -37,14 +38,14 @@ export const DetailRecipe = (props) => {
                 />
               </div>
               <p className='p'>{recipeDetail.summary?.replace(/<[^>]+>/g, '')}</p>
-              <p className='p'>{recipeDetail.steps}</p>
-              <p className='p'>{recipeDetail.diets?.map((e) => e.name).join(", ")}</p>
+              <p className='p'>{recipeDetail.diets?.map((e) => e).join(", ")}</p>
+              <p className='p'>{recipeDetail ? recipeDetail.steps?.map((e) => e.step) : recipeDetail.steps}</p>
               <p className='p'>{recipeDetail.healthScore}</p>
             </div>
           ) : (
             <h5>no hay detalles de esta receta</h5>
           )}
-      </div>
+    </div>
     </div >
   )
 };

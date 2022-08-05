@@ -3,16 +3,17 @@ const { Recipe, Diet } = require('../db');
 
 const allRecipes = async () => {
 
-   const typeRecipes = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&addRecipeInformation=true&number=100`)).data.results;
+   const typeRecipes = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&addRecipeInformation=true&number=20`)).data.results;
    const mapeoRecipes = typeRecipes.map((e) => ({
       id: e.id,
       name: e.title ? e.title : e.sourceName,
-      steps: e.analyzedInstructions[0]?.steps.map(e => ({ number: e.number, step: e.step })),
+      steps: e.analyzedInstructions[0]?.steps.map(i => ({number: Number(i.number), step: i.step})), // number: e.number,
       summary: e.summary,
       healthScore: e.healthScore,
       diets: e.diets,
-      image: e.image
+      image: e.image 
    }))
+   // console.log(mapeoRecipes, 'idea del jesus')
    return mapeoRecipes;
 }
 
@@ -68,13 +69,13 @@ const getId = async (req, res) => {
       let { id } = req.params
       if (/^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i.test(id)) {
          let recipesDB = await allDb()
-         let allAndDb = recipesDB.find((e) => e.id === id)
-         // console.log(allAndDb,'hola soy los datos de la ab')
+         let allAndDb = recipesDB.find(e => e.id === id)
+         console.log(allAndDb, 'hola soy los datos de la db')
          return res.send(allAndDb)
       } else {
          let recipesApi = await allRecipes()
-         let allAndApi = recipesApi.find((e) => e.id === Number(id))
-         // console.log(allAndApi,'soy el dato de la api')
+         let allAndApi = recipesApi.find(e => e.id === Number(id))
+         console.log(allAndApi, 'soy el dato de la api')
          return res.send(allAndApi)
       }
    } catch (error) {
@@ -88,17 +89,17 @@ const createRecipe = async (req, res) => {
       console.log(req.body)
       let { name, summary, healthScore, image, steps, diets } = req.body
 
-      if (!name || !summary) return res.send('Data is missing')
+      if (!name || !summary) return res.status(404).send;
       let newRecipe = await Recipe.create({ name, summary, healthScore, image, steps })
 
       let dietsPromise = diets.map(async (e) => await Diet.findOne({ where: { name: e } }))
       let dietsFinal = await Promise.all(dietsPromise)
-      newRecipe.addDiet(dietsFinal)//
+      newRecipe.addDiet(dietsFinal)
       res.send(newRecipe)
 
    } catch (error) {
       console.log(error)
-      res.send("It haven't created")
+      res.send("no pudimos crear la receta")
    }
 };
 
