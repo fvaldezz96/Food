@@ -16,8 +16,8 @@ const validations = (input) => {
   if (!input.healthScore.trim()) {
     errors.healthScore = 'Debe completar con un valor'
   }
-  if (!input.steps) {
-    errors.steps = 'Describa los pasos'
+  if(!input.image){
+    errors.image = 'che flata la imagen'
   }
   return errors;
 }
@@ -48,6 +48,7 @@ export const CreateRecipe = () => {
         [e.target.name]: e.target.value
       })
     );
+    if (!input.name && !input.summary && !input.image && !input.diets.length && !input.steps.lengt) return alert('No hay informacion');
     if (Object.keys(errors).length === 0) {
       dispatch(postRecipe(input));
       alert('Su receta fue creada con exito');
@@ -61,7 +62,7 @@ export const CreateRecipe = () => {
       })
       history.push('/home');
     } else {
-      alert('No se pudo crear tu receta')
+      alert('Completar todos los campos')
     }
     return
   }
@@ -144,6 +145,7 @@ export const CreateRecipe = () => {
             name="name"
             id="name"
             value={input.name}
+          // required
           />
           {errors.name && <h4>{errors.name}</h4>}
         </div>
@@ -157,6 +159,7 @@ export const CreateRecipe = () => {
             value={input.image}
             placeholder="URL"
             onChange={(e) => handleChange(e)}
+          // required
           />
         </div>
         <br />
@@ -171,6 +174,7 @@ export const CreateRecipe = () => {
             id="healthScore"
             min="0"
             max="100"
+          // required
           />
           {errors.healthScore && <h4>{errors.healthScore}</h4>}
         </div>

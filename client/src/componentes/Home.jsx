@@ -14,8 +14,7 @@ import {
   filterOrder,
   filterCreateRecipe,
   filterHealthScore,
-  getDiet,
-  clean
+  getDiet
 } from '../redux/index';
 
 export const Home = () => {
@@ -68,7 +67,7 @@ export const Home = () => {
   useEffect(() => {
     dispatch(getRecipes());
     dispatch(getDiet());
-    return dispatch(clean())
+    // return dispatch(clean())
   }, [dispatch]);
 
   return (

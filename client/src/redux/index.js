@@ -9,8 +9,8 @@ import {
    FILTER_HEALTHSCORE,
    FILTER_CREATE,
    POST_RECIPE,
-   GET_DIET,
-   CLEAN
+   GET_DIET
+
 } from './actions.js';
 
 export const getRecipes = () => {
@@ -108,8 +108,4 @@ export const postRecipe = (payload) => {
    }
 }
 
-export const clean = () => {
-   return {
-      type: CLEAN
-   }
-}
+
