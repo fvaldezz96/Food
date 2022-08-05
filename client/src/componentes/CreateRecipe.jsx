@@ -16,7 +16,7 @@ const validations = (input) => {
   if (!input.healthScore.trim()) {
     errors.healthScore = 'Debe completar con un valor'
   }
-  if (!input.steps.trim()) {
+  if (!input.steps) {
     errors.steps = 'Describa los pasos'
   }
   return errors;
@@ -29,13 +29,14 @@ export const CreateRecipe = () => {
   const dietasSeleccion = useSelector((state) => state.diet);
   /* Un gancho que se utiliza para acceder al estado de la tienda. */
 
+  const [objectStep, setObjectStep] = useState({ number: 0, step: '' })
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
     name: "",
     summary: "",
     healthScore: "",
     image: "",
-    steps: "",
+    steps: [],
     diets: []
   });
 
@@ -55,7 +56,7 @@ export const CreateRecipe = () => {
         summary: "",
         image: "",
         healthScore: "",
-        steps: "",
+        steps: [],
         diets: []
       })
       history.push('/home');
@@ -93,6 +94,33 @@ export const CreateRecipe = () => {
     setInput({
       ...input,
       diets: input.diets.filter((d) => d !== e)
+    })
+  }
+
+  const handleChangeObjectStep = (e) => {
+    setObjectStep({
+      ...objectStep,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const addStep = () => {
+    let newStep = { number: objectStep.number, step: objectStep.step }
+    if (!newStep.number || !newStep.step || !!input.steps.find(e => e.number === newStep.number)) {
+      alert('espacio vacio')
+    } else {
+      setInput({
+        ...input,
+        steps: [...input.steps, newStep]
+      })
+      setObjectStep({ number: 0, step: '' })
+    }
+  }
+
+  const deleteStep = (number) => {
+    setInput({
+      ...input,
+      steps: input.steps.filter(e => e.number !== number)
     })
   }
 
@@ -164,13 +192,37 @@ export const CreateRecipe = () => {
           <input
             autoComplete="false"
             className="pasos"
-            onChange={(e) => handleChange(e)}
-            type="text"
-            placeholder="Pasos..."
-            value={input.steps}
-            name="steps"
-            id="steps"
+            onChange={(e) => handleChangeObjectStep(e)}
+            type={'number'}
+            value={objectStep.number}
+            name="number"
           />
+          <label>Step</label>
+          <textarea
+            name="step"
+            type={'text'}
+            placeholder="Pasos..."
+            value={objectStep.step}
+            onChange={(e) => handleChangeObjectStep(e)}></textarea>
+          <button type='button' onClick={addStep}>Agregar Paso</button>
+          {!!input.steps.length &&
+            <div>
+              {input.steps.map((e, k) => {
+                return (
+                  <div key={k}>
+                    <div>
+                      <p>Number</p>
+                      <p>{e.number}</p>
+                    </div>
+                    <div>
+                      <p>Step</p>
+                      <p>{e.step}</p>
+                      <button type='button' onClick={() => deleteStep(e.number)}>X</button>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>}
           {errors.steps && <h4>{errors.steps}</h4>}
         </div>
         <div>

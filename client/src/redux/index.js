@@ -12,19 +12,13 @@ import {
    GET_DIET,
    CLEAN
 } from './actions.js';
-// En este archivo meto la logica de las accios 
-//Ademas en este archivo va la coneccion de back con el front
 
 export const getRecipes = () => {
-   /* Una función que devuelve una función que devuelve un objeto. */
    return async function (dispatch) {
       const recipesData = await axios.get("http://localhost:3001/recipe")
-      /* Una variable que almacena los datos de la API. */
       return dispatch({
          type: GET_RECIPES,
-         /* Una constante que se utiliza para identificar la acción. */
          payload: recipesData.data
-         /* `payload` son los datos que se envían al reducer. */
       })
    }
 };
@@ -50,7 +44,7 @@ export const getDetailRecipe = (id) => {
    return async (dispatch) => {
       try {
          const detalle = await axios.get(`http://localhost:3001/recipe/${id}`);
-         console.log(detalle.data, 'soy el detalle');
+         // console.log(detalle.data, 'soy el detalle');
          return dispatch({
             type: GET_DETAIL_RECIPE,
             payload: detalle.data
