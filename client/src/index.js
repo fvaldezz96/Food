@@ -4,6 +4,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';//con este hago la coneccion con el back
 import { store } from './redux/store';
+import './App.css';
 
 ReactDOM.render(
   <Provider store={store}>

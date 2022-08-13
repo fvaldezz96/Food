@@ -7,10 +7,9 @@
 
 a {
      font-family: url('../font/JetBrainsMono-Light.ttf');
-}
+} 
 
-body {
-     background-image: url(../img/img2.jpg);
+ /* body {
      background-repeat: no-repeat;
      background-attachment: fixed;
      background-position: center center;
@@ -19,7 +18,7 @@ body {
      padding: 0;
      margin: 0;
      height: 100%;
-}
+}  */
 
 .form {
      background-color: transparent;
@@ -30,8 +29,8 @@ body {
      margin: 0 auto;
      z-index: 1;
      filter: alpha(opacity=70);
-     /* -moz-opacity: .70;
-     opacity: .70; */
+     -moz-opacity: .70;
+     opacity: .70;
 }
 
 .form:hover {
@@ -108,7 +107,7 @@ body {
 }
 
 .botonSelect {
-     /* background-color: white; */
+      background-color: white; 
      backdrop-filter: blur(10px);
      border: none;
      color: #fff;
