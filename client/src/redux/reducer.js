@@ -8,7 +8,8 @@ import {
    FILTER_HEALTHSCORE,
    FILTER_CREATE,
    POST_RECIPE,
-   GET_DIET
+   GET_DIET,
+   RESET_DETAIL
 } from './actions.js';
 
 let initialState = {
@@ -98,6 +99,11 @@ function rootReducer(state = initialState, action) {
          return {
             ...state,
             diet: action.payload
+         }
+      case RESET_DETAIL:
+         return {
+            ...state,
+            detailRecipe: {}
          }
       default:
          return state;

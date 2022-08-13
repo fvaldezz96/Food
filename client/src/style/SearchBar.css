@@ -1,7 +1,23 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400);
+@font-face {
+     font-family: 'DancingScript-Regular';
+     src: url('../font/DancingScript-Regular.ttf')
+}
+
+.inputStyle {
+     font-family: 'DancingScript-Regular';
+     font-size: 22px;
+}
+
+::placeholder {
+     color: #fff;
+     font-size: 1.9em;
+}
 
 .container-3 {
      width: 12.5rem;
+     height: 30px;
+     margin-top: 5px;
+     margin-left: 10%;
      vertical-align: middle;
      white-space: nowrap;
      color: #fff;
@@ -10,29 +26,24 @@
 }
 
 .container-3 input#search {
-     width: 10rem;
-     height: 1.875rem;
+     width: 8rem;
+     height: 30px;
      background: #9e0731;
      border: none;
      font-size: 10pt;
      float: left;
      color: #fff;
-     padding-left: 45px;
-     -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-     border-radius: 0px;
-     margin-top: 4%;
-
+     margin-top: 2%;
+     text-align: center;
 }
 
 .botonIr {
      background-color: #9e0731;
-     margin-top: 8px;
-     height: 1.875rem;
+     height: 30px;
      margin-left: 1%;
-     border: 0;
-     font-size: 1em;
+     font-size: 0.875rem;
+     border: none;
+     cursor: pointer;
      color: white;
-     font-family: "Roboto", sans-serif;
      position: center;
 }

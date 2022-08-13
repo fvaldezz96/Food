@@ -1,11 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import '../style/Landing.css'
+import '../style/Landing.css';
 
 export const Landing = () => {
    const history = useHistory();
 
-   function handleChange(e) {
+   const handleChange = (e) => {
       e.preventDefault(e);
    }
 
@@ -15,15 +15,16 @@ export const Landing = () => {
             <div className="col-md-12 splash">
                <div>
                   <div>
-                     <h1 className='tituloPagina'>Bienvenido</h1>
+                     <h1 className='tituloPagina'>Una experiencia gustativa unica</h1>
                   </div>
-                  <button href='/home/' className="btn btn-default CTA" alt="Inicio" onClick={() => { history.push('/home') }}> </button>
-                  <div className="sub">
-                     <p></p>
-                  </div>
+                  <button href='/home/' className="btn btn-default CTA" onClick={() => { history.push('/home') }}>Menu</button>
                </div>
             </div>
          </div>
+         <video muted autoplay loop>
+            <source src="../img/videoFoodCortado.mp4"
+               type='videoFoodCortado/mp4' />
+         </video>
       </div>
    )
 }

@@ -33,6 +33,7 @@
    position: center;
    margin-bottom: 60px;
    z-index: 0;
+   border-radius: 10px;
 }
 
 .diet {

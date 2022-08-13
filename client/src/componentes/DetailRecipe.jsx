@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getDetailRecipe } from '../redux/index';
+import { getDetailRecipe, resetDetail } from '../redux/index';
 import { Link } from 'react-router-dom';
 import '../style/DetailRecipe.css';
 
@@ -10,10 +10,10 @@ export const DetailRecipe = (props) => {
   const dispatch = useDispatch();
   const { id } = props.match.params;
   const recipeDetail = useSelector(state => state.detailRecipe);
-  // console.log(recipeDetail, 'soy el front(stado)');
 
   useEffect(() => {
     dispatch(getDetailRecipe(id));
+    dispatch(resetDetail());
   }, [dispatch, id]);
 
   return (
@@ -27,7 +27,8 @@ export const DetailRecipe = (props) => {
           Object.keys(recipeDetail).length > 0 ? (
             <div>
               <p className='nameTitle'>{recipeDetail.name}</p>
-              <div>
+              <div className='p'>{recipeDetail.diets?.map((e) => e).join(", ")}</div>
+              <div className='container-image'>
                 <img
                   alt='img not found'
                   className='image'
@@ -36,11 +37,14 @@ export const DetailRecipe = (props) => {
                     "https://www.acbar.org/Website/Loader/loader3.gif"
                   }
                 />
+                <div>
+                  <div className='description'>{recipeDetail.summary?.replace(/<[^>]+>/g, '')}</div>
+                </div>
               </div>
-              <div className='p'>{recipeDetail.summary?.replace(/<[^>]+>/g, '')}</div>
-              <div className='p'>{recipeDetail.diets?.map((e) => e).join(", ")}</div>
-              <div className='p'>{recipeDetail.steps.map((e, k) => <div key={k}><h5>Step {e.number}:</h5><p>{e.step}</p></div>)}</div>
-              <div className='p'>{recipeDetail.healthScore}</div>
+              <div className='container-steps'>
+                <div className='p'>{recipeDetail.steps.map((e, k) => <div key={k}><h5 className='numberStep'>Step {e.number}:</h5><p className='numberStep'>{e.step}</p></div>)}</div>
+              </div>
+              <div className='p'>Nivel saludable: {recipeDetail.healthScore}</div>
             </div>
           ) : (
             <h5>no hay detalles de esta receta</h5>
@@ -49,12 +53,3 @@ export const DetailRecipe = (props) => {
     </div >
   )
 };
-
-
-
-
-
-// <img src="" alt="" />
-// <h1>{name}</h1>
-// <h3>tipo de plato</h3>
-// <h4>tipo de dieta</h4>

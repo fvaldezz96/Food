@@ -6,11 +6,11 @@
 }
 
 .detail {
-   width: 50rem;
-   height: 40rem;
+   width: 60rem;
+   height: auto;
    align-items: center;
    justify-content: center;
-   backdrop-filter: blur(10px);
+   backdrop-filter: blur(7px);
    display: flex;
    flex-direction: row;
    position: relative;
@@ -42,16 +42,66 @@
 
 .nameTitle {
    margin-bottom: 40px;
-   color: #fff;
+   color: rgb(24, 22, 22);
    font-size: 27px;
 }
 
 .p {
-   color: #fff;
+   color: rgb(24, 22, 22);
    margin: 10px;
+   width: auto;
+   height: auto;
+}
+
+.container-image {
+   position: relative;
+   text-align: left;
+   margin: 5rem 3rem;
+   flex-wrap: no-wrap;
+   grid-template-columns: repeat(2, 1fr);
+   display: grid;
+   align-items: center;
+   justify-content: center;
+   flex-direction: row;
+   padding: 0vh;
+   grid-gap: 1.2rem;
 }
 
 .image {
-   width: 320px;
-   height: 250px;
+   border-radius: 10px;
+   width: 24.375rem;
+   height: 18.75rem;
+   transition: 400ms linear;
+}
+
+.image:hover {
+   transform: scale(1.1);
+   box-shadow: 5px 10px 10px #120d0d6e;
+}
+
+.description {
+   color: rgb(24, 22, 22);
+}
+
+.container-steps {
+   margin: 2rem auto;
+   border: none;
+   height: 18.75rem;
+   width: auto;
+   max-width: auto;
+   overflow: auto;
+   color: rgb(24, 22, 22);
+   backdrop-filter: blur(7px);
+   padding: 0 1rem;
+}
+
+.container-steps::-webkit-scrollbar:vertical {
+   width: 10px;
+}
+
+.numberStep {
+   position: relative;
+   text-align: left;
+   color: rgb(24, 22, 22);
+   left: 4px;
 }

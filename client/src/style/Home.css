@@ -1,3 +1,19 @@
+@font-face {
+   font-family: 'DancingScript-Regular';
+   src: url('../font/DancingScript-Regular.ttf')
+}
+
+.btn-inicio {
+   font-family: 'DancingScript-Regular';  color: #fff;
+   background-color: #9e0731;
+   cursor: pointer;
+   padding: 5px 24px;
+   font-size: 22px;
+   margin-bottom: 1px;
+   text-align: center;
+   border: none;
+   margin: 3px;
+}
 
 .navBar {
    background-color: #9e0731;
@@ -22,11 +38,13 @@
 .navs {
    color: #fff;
    background-color: #9e0731;
-   font-size: 14px;
-   padding: 0.3125rem 1.5rem;
+   cursor: pointer;
+   padding: 5px 24px;
+   font-size: 22px;
+   margin-bottom: 1px;
    text-align: center;
    border: none;
-   margin: 4px;
+   margin: 3px;
 }
 
 .Card {

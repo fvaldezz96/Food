@@ -5,6 +5,7 @@
    border-style: solid;
    border-width: 2px;
    border: none;
+   cursor: pointer;
    margin: 2px;
    color: #fff;
    display: inline-block;

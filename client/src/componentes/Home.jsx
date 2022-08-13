@@ -74,7 +74,7 @@ export const Home = () => {
     <div>
       <div className='navBar'>
       <Link to='/'>
-          <button className='navs'>Inicio</button>
+          <button className='btn-inicio'>Inicio</button>
           </Link>
         <div className='divs'>
           <NavBar className='navs'

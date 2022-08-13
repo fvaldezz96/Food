@@ -7,4 +7,5 @@ export const FILTER_HEALTHSCORE = "FILTER_HEALTHSCORE";
 export const FILTER_CREATE = "FILTER_CREATE";
 export const POST_RECIPE = "POST_RECIPE";
 export const GET_DIET = "GET_DIET";
+export const RESET_DETAIL='RESET_DETAIL';
 

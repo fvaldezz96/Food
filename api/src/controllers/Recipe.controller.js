@@ -3,7 +3,7 @@ const { Recipe, Diet } = require('../db');
 
 const allRecipes = async () => {
 
-   const typeRecipes = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&addRecipeInformation=true&number=100`)).data.results;
+   const typeRecipes = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.API_KEY}&addRecipeInformation=true&number=10`)).data.results;
    const mapeoRecipes = typeRecipes.map((e) => ({
       id: e.id,
       name: e.title ? e.title : e.sourceName,
@@ -75,7 +75,7 @@ const getId = async (req, res) => {
       } else {
          let recipesApi = await allRecipes()
          let allAndApi = recipesApi.find(e => e.id === Number(id))
-         console.log(allAndApi, 'soy el dato de la api')
+         // console.log(allAndApi, 'soy el dato de la api')
          return res.send(allAndApi)
       }
    } catch (error) {
@@ -89,7 +89,7 @@ const createRecipe = async (req, res) => {
       console.log(req.body)
       let { name, summary, healthScore, image, steps, diets } = req.body
 
-      if (!name || !summary) return res.status(404).send;
+      if (!name || !summary) return res.send('receta no creada');
       let newRecipe = await Recipe.create({ name, summary, healthScore, image, steps })
 
       let dietsPromise = diets.map(async (e) => await Diet.findOne({ where: { name: e } }))
@@ -103,38 +103,9 @@ const createRecipe = async (req, res) => {
    }
 };
 
-const deleteRecipe = async (req, res) => {
-   try {
-      const { id } = req.params;
-      await Recipe.destroy({ where: { id } })
-      res.send('borrar')
-   } catch (error) {
-      console.log(error)
-      res.send('no se pudo borrar')
-   }
-}
-
-// const updateRecipe = async (req, res) => {
-//    try {
-//       const { id } = req.params;
-//       const { name, summary, healthScore, steps, diets } = req.body;
-//       if (!name || !summary) return res.send('faltan propiedades')
-//       await Recipe.update({ name, summary, healthScore, steps }, { where: { id } })
-//       const recetas = await Recipe.findOne({ where: { id } })
-//       const dietas = await diets.map(async (e) => await Diet.findOne({ where: { name: e } }))
-//       const final = await Promise.all(dietas)
-//       recetas.addDiet(final)
-//       res.send(recetas)
-//    } catch (error) {
-//       console.log(error)
-//       res.send('no se pudo modificar la receta')
-//    }
-// }
-
 module.exports = {
    getApiandDb,
    getNames,
    getId,
    createRecipe,
-   deleteRecipe
 }

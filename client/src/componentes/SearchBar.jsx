@@ -22,16 +22,16 @@ export const SearchBar = () => {
   }
 
   return (
-    <div className="contenedorSearch">
+    <div>
       <div className="container-3">
-        <input
+        <input className='inputStyle'
           type="text"
           id="search"
           value={name}
           onChange={(e) => handleChange(e)}
           placeholder="Buscar..."
         />
-        <button className='botonIr' type='submit' onClick={(e) => handleSubmit(e)}><i className="fa-solid fa-magnifying-glass"></i>Ir</button>
+        <button className='botonIr' type='submit' onClick={(e) => handleSubmit(e)}>Ir</button>
       </div>
     </div>
   )

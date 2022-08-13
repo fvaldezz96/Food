@@ -7,6 +7,6 @@ router.get('/', getApiandDb);
 router.get('/name', getNames);
 router.get('/:id', getId);
 router.post('/', createRecipe);
-router.delete('/:id', deleteRecipe);
+// router.delete('/:id', deleteRecipe);
 //aca tengo que traer el updateRecipe
 module.exports = router;
