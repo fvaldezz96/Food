@@ -1,78 +1,87 @@
 @font-face {
-   font-family: 'DancingScript-Regular';
-   src: url('../font/DancingScript-Regular.ttf')
+  font-family: "DancingScript-Regular";
+  src: url("../font/DancingScript-Regular.ttf");
 }
 
 .tituloPagina {
-   font-family: 'DancingScript-Regular';
-   font-size: 100px;
-   margin: 60px;
-   /* color: #fff; */
+  font-family: "DancingScript-Regular";
+  font-size: 100px;
+  margin: 60px;
+  /* color: #fff; */
 }
-
+/* 
 .container-fluid {
-   background-repeat: no-repeat;
-   background-attachment: fixed;
-   background-position: center center;
-   background-size: cover;
-   display: inline-block;
-   overflow-x: hidden;
-   padding: 0;
-   margin: 0;
-}
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  display: inline-block;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+} */
 
-.home {
-   height: 100vh;
-   margin-top: 3%;
-}
+/* .home {
+  height: 100vh;
+  margin-top: 3%;
+} */
 
 .splash {
-   height: 100%;
-   width: 100%;
-   text-align: center;
-   display: flex;
-   justify-content: center;
-   flex-wrap: wrap;
-   align-items: center;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 a {
-   font-family: 'Dosis-ExtraLight';
-   color: #fff;
+  font-family: "Dosis-ExtraLight";
+  color: #fff;
 }
 
 .CTA {
-   background-color: #9e0731;
-   padding: 10px 45px 10px 45px;
-   border-radius: 10px;
-   font-size: 1em;
-   border: none;
-   color: white;
-   font-family: "Roboto", sans-serif;
-   position: center;
-   margin-top: 40px;
+  background-color: #9e0731;
+  padding: 10px 45px 10px 45px;
+  border-radius: 10px;
+  font-size: 1em;
+  border: none;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  position: center;
+  margin-top: 40px;
 }
 
 .CTA:hover {
-   background-color: #0095eb;
+  background-color: #0095eb;
 }
 
 .CTA:hover {
-   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);
-   ;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);
 }
 
 @keyframes slidebg {
-   to {
-      background-position: 20vw;
-   }
+  to {
+    background-position: 20vw;
+  }
 }
 
 .splash h1 {
-   color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
 }
 
 .splash p {
-   padding-top: 10px;
-   color: black;
+  padding-top: 10px;
+  color: black;
+}
+
+#background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
 }

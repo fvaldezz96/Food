@@ -1,6 +1,6 @@
-import React from 'react';
 import { useHistory } from 'react-router-dom';
 import '../style/Landing.css';
+import video from '../assets/videoFoodCortado.mp4';
 
 export const Landing = () => {
    const history = useHistory();
@@ -8,7 +8,7 @@ export const Landing = () => {
    const handleChange = (e) => {
       e.preventDefault(e);
    }
-
+console.log(process.env.PUBLIC_URL + '/video.mp4');
    return (
       <div className="container-fluid" onChange={(e) => handleChange(e)}>
          <div className="row home">
@@ -21,9 +21,9 @@ export const Landing = () => {
                </div>
             </div>
          </div>
-         <video muted autoplay loop>
-            <source src="../img/videoFoodCortado.mp4"
-               type='videoFoodCortado/mp4' />
+         <video autoPlay loop muted id="background-video">
+            <source src={video}
+               type='video/mp4' />
          </video>
       </div>
    )
