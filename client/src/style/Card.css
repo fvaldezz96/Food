@@ -1,16 +1,23 @@
+@font-face {
+   font-family: "Dosis-ExtraLight";
+   src: url("../font/Dosis-ExtraLight.ttf");
+}
+
 .card {
-   width: 19serttrrem;
-   height: 20rem;
+   width: 24rem;
+   height: 29rem;
    align-items: center;
    justify-content: center;
    backdrop-filter: blur(10px);
    display: flex;
    flex-direction: column;
    margin: 2rem 0;
+   border-radius: 12px;
    margin-top: 0;
    padding: 2rem 0;
    text-align: center;
    border: solid 0.1px;
+   border-color: black;
    transition: transform .2s;
 }
 
@@ -20,34 +27,42 @@
 
 .name {
    margin-bottom: 30px;
+   font-family: "Dosis-ExtraLight";
    text-align: center;
+   color: #fff;
+   font-size: 30px;
+   padding: 8px;
    align-items: center;
-   font-family: url('../font/JetBrainsMono-Light.ttf');
-   font-size: 20px;
-   text-decoration: none;
 }
 
 .imagen {
-   width: 15rem;
-   height: 10rem;
+   width: 22rem;
+   height: 16rem;
+   border-radius: 25px;
    position: center;
+   padding: 12px;
    margin-bottom: 60px;
    z-index: 0;
-   border-radius: 10px;
 }
 
 .diet {
+   font-size: 20px;
    align-items: center;
    position: absolute;
+   color: #fff;
+   margin: 6px;
+   font-family: "Dosis-ExtraLight";
    bottom: 40px;
    left: 0px;
    right: 0px;
 }
 
-.nivel{
+.nivel {
    align-items: center;
    position: absolute;
+   font-family: "Dosis-ExtraLight";
    bottom: 10px;
+   color: #fff;
    left: 0px;
-   right: 0px; 
+   right: 0px;
 }

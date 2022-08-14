@@ -9,7 +9,7 @@ export const Paginado = ({ currentRecipePage, todasLasRecetas, page }) => {
 
   return (
     <div className='general'>
-      <nav className="numberContainer">
+      <nav className="numPage">
         <div>
           {
             numberPage?.map((e) => (

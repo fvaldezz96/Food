@@ -3,37 +3,42 @@
   src: url("../font/DancingScript-Regular.ttf");
 }
 
-.tituloPagina {
-  font-family: "DancingScript-Regular";
-  font-size: 100px;
-  margin: 60px;
-}
-
-.splash {
-  height: 100%;
-  width: 100%;
-  text-align: center;
+.contenedor {
+  align-items: center;
+  position: fixed;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  align-items: center;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
 }
 
-a {
-  font-family: "Dosis-ExtraLight";
+.tituloLanding {
+  font-family: "DancingScript-Regular";
+  justify-content: center;
+  display: flex;
+  padding: 8px;
+  align-items: center;
+  z-index: 2;
   color: #fff;
+  font-size: 40px;
+}
+
+@font-face {
+  font-family: "Dosis-ExtraLight";
+  src: url("../../src/font/Dosis-ExtraLight.ttf");
 }
 
 .CTA {
-  background-color: #9e0731;
+  background-color: #000000cc;
   padding: 10px 45px 10px 45px;
   border-radius: 10px;
-  font-size: 1em;
+  font-size: 25px;
   border: none;
   color: white;
-  font-family: "Roboto", sans-serif;
+  font-family: "Dosis-ExtraLight";
   position: center;
-  margin-top: 40px;
+  align-items: center;
 }
 
 .CTA:hover {
@@ -44,27 +49,21 @@ a {
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);
 }
 
-@keyframes slidebg {
-  to {
-    background-position: 20vw;
-  }
-}
-
-.splash h1 {
-  color: rgb(255, 255, 255);
-}
-
-.splash p {
-  padding-top: 10px;
-  color: black;
-}
-
-#background-video {
+#video {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: -1;
+  z-index: 1;
   object-fit: cover;
   height: 100%;
   width: 100%;
+}
+
+
+@media (max-width:500px) {
+  .tituloLanding {
+    font-size: 15px;
+    align-items: center;
+    justify-content: center;
+  }
 }

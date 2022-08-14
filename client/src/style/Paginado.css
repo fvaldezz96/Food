@@ -1,19 +1,24 @@
-.numberContainer {
-   height: 1vh;
-   background-position: bottom;
+.general {
+   background-color: #000000cc;
+   height: 2rem;
+}
+
+.numPage {
    position: center;
    justify-content: center;
    align-items: center;
-   display: inline-block;
+   display: flex;
    position: relative;
+   background-position: bottom;
    padding: 0 3vw;
    cursor: pointer;
+   height: 1vh;
    margin-top: 0%;
    margin-bottom: 4%;
 }
 
 .number {
-   background-color: #9e0731;
+   background-color: #000000cc;
    font-weight: 650;
    font-size: large;
    border: none;
@@ -24,10 +29,4 @@
 .number:hover {
    transform: scale(1.1);
    cursor: pointer;
-   /* background-color: #8b0000; */
-}
-
-.general {
-   background-color: #9e0731;
-   width: auto;
 }

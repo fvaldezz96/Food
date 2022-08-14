@@ -1,14 +1,20 @@
+@font-face {
+   font-family: "Dosis-ExtraLight";
+   src: url("../font/Dosis-ExtraLight.ttf");
+}
 .orden {
    align-items: center;
-   background-color: #9e0731;
+   background-color: #000000cc;
+   font-family: "Dosis-ExtraLight";
    border-color: #ffff;
    border-style: solid;
    border-width: 2px;
    border: none;
    cursor: pointer;
+   border-radius: 10px;
    margin: 2px;
    color: #fff;
    display: inline-block;
-   font-size: 0.875rem;
+   font-size: 24px;
    padding: 0.4375rem 0.625rem;
 }

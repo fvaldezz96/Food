@@ -3,21 +3,38 @@
    src: url('../font/DancingScript-Regular.ttf')
 }
 
+@font-face {
+   font-family: "Dosis-ExtraLight";
+   src: url("../font/Dosis-ExtraLight.ttf");
+}
+
 .btn-inicio {
    font-family: 'DancingScript-Regular';
    color: #fff;
-   background-color: #9e0731;
+   background-color: #000000cc;
    cursor: pointer;
    padding: 5px 24px;
-   font-size: 22px;
+   font-size: 30px;
+   position: absolute;
    margin-bottom: 1px;
    text-align: center;
+   justify-content: center;
+   align-items: center;
    border: none;
+   border-radius: 10px;
    margin: 3px;
 }
 
+.h {
+   background-image: url('../assets/imageAmburgesa.jpg');
+   background-position: center center;
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+}
+
 .navBar {
-   background-color: #9e0731;
+   background-color: #000000cc;
    color: #fff;
    padding: 0px 8px;
    position: -webkit-sticky;
@@ -38,10 +55,12 @@
 
 .navs {
    color: #fff;
-   background-color: #9e0731;
+   background-color: #000000cc;
    cursor: pointer;
    padding: 5px 24px;
-   font-size: 22px;
+   font-family: "Dosis-ExtraLight";
+   border-radius: 10px;
+   font-size: 24px;
    margin-bottom: 1px;
    text-align: center;
    border: none;

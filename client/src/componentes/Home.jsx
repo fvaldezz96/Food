@@ -58,7 +58,6 @@ export const Home = () => {
     setCurrentPage(1);
     setOrder(e.target.value);
   }
-  //  console.log(dispatch)
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(getRecipes())
@@ -67,15 +66,14 @@ export const Home = () => {
   useEffect(() => {
     dispatch(getRecipes());
     dispatch(getDiet());
-    // return dispatch(clean())
   }, [dispatch]);
 
   return (
-    <div>
+    <div className='h'> 
       <div className='navBar'>
-      <Link to='/'>
+        <Link to='/'>
           <button className='btn-inicio'>Inicio</button>
-          </Link>
+        </Link>
         <div className='divs'>
           <NavBar className='navs'
             handleFilterDiet={handleFilterDiet}
@@ -89,7 +87,7 @@ export const Home = () => {
           <button className='navs' onClick={(e) => { handleClick(e) }}>
             Actualizar
           </button>
-          
+
           <SearchBar className='navs' />
         </div>
       </div>
@@ -116,16 +114,9 @@ export const Home = () => {
               </div>
             )
           })
-          : <p>Loanding...</p>
+            : <p>Loanding...</p>
         }
       </div>
     </div>
   )
 }
-
-
-  // const handleFilter = (e, funcion) => { 
-  //   dispatch(funcion(e.target.value))
-  //   setCurrentPage(1);
-  //   setOrder(e.target.value); 
-  //  }

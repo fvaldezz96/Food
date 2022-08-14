@@ -3,6 +3,11 @@
      src: url('../font/DancingScript-Regular.ttf')
 }
 
+@font-face {
+     font-family: "Dosis-ExtraLight";
+     src: url("../font/Dosis-ExtraLight.ttf");
+}
+
 .inputStyle {
      font-family: 'DancingScript-Regular';
      font-size: 22px;
@@ -16,7 +21,6 @@
 .container-3 {
      width: 12.5rem;
      height: 30px;
-     margin-top: 5px;
      margin-left: 10%;
      vertical-align: middle;
      white-space: nowrap;
@@ -28,20 +32,22 @@
 .container-3 input#search {
      width: 8rem;
      height: 30px;
-     background: #9e0731;
+     background-color: #000000cc;
      border: none;
+     padding: 6px;
      font-size: 10pt;
      float: left;
+     border-radius: 10px;
      color: #fff;
-     margin-top: 2%;
      text-align: center;
 }
 
 .botonIr {
-     background-color: #9e0731;
+     background-color: transparent !important;
      height: 30px;
-     margin-left: 1%;
-     font-size: 0.875rem;
+     font-family: "Dosis-ExtraLight";
+     border-radius: 10px;
+     font-size: 23px;
      border: none;
      cursor: pointer;
      color: white;
