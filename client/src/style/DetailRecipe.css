@@ -1,8 +1,20 @@
+@font-face {
+   font-family: "Dosis-ExtraLight";
+   src: url("../font/Dosis-ExtraLight.ttf");
+}
+
 .container {
+   background-image: url('../assets/imageDetalle.jpg');
+   background-position: center center;
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
    display: grid;
    align-items: center;
    justify-content: center;
+   font-family: "Dosis-ExtraLight";
    flex-direction: row;
+   font-size: 24px;
 }
 
 .detail {
@@ -11,26 +23,30 @@
    align-items: center;
    justify-content: center;
    backdrop-filter: blur(7px);
+   color: #fff;
    display: flex;
    flex-direction: row;
    position: relative;
    margin: 2rem 0;
    margin-top: 0;
    padding: 2rem 0;
+   border-radius: 25px;
    text-align: center;
    border: solid 0.1px;
+   border-color: black;
    z-index: 2;
    transition: transform .2s;
 }
 
 .back {
-   background-color: #9e0731;
+   background-color: #000000cc;
    padding: 4px 25px 5px 25px;
    border: 0;
    font-size: 1em;
    color: white;
-   font-family: "Roboto", sans-serif;
+   font-family: "Dosis-ExtraLight";
    position: center;
+   border-radius: 10px;
    margin-bottom: 15px;
    margin-top: 15px;
 }
@@ -42,12 +58,12 @@
 
 .nameTitle {
    margin-bottom: 40px;
-   color: rgb(24, 22, 22);
-   font-size: 27px;
+   color: #fff;
+   font-size: 40px;
 }
 
 .p {
-   color: rgb(24, 22, 22);
+   color: #fff;
    margin: 10px;
    width: auto;
    height: auto;
@@ -65,6 +81,7 @@
    flex-direction: row;
    padding: 0vh;
    grid-gap: 1.2rem;
+   border-radius: 20px;
 }
 
 .image {
@@ -80,7 +97,7 @@
 }
 
 .description {
-   color: rgb(24, 22, 22);
+   color: #fff;
 }
 
 .container-steps {
@@ -90,7 +107,7 @@
    width: auto;
    max-width: auto;
    overflow: auto;
-   color: rgb(24, 22, 22);
+   color: #fff;
    backdrop-filter: blur(7px);
    padding: 0 1rem;
 }
@@ -102,6 +119,6 @@
 .numberStep {
    position: relative;
    text-align: left;
-   color: rgb(24, 22, 22);
+   color: #fff;
    left: 4px;
 }

@@ -1,20 +1,28 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400);
 
 @font-face {
-     font-family: 'JetBrainsMono-Light';
-     src: url('../font/JetBrainsMono-Light.ttf')
+     font-family: 'Dosis-ExtraLight';
+     src: url('../font/Dosis-ExtraLight.ttf')
+}
+
+.cR {
+     background-image: url('../assets/imageCreate.jpg');
+     background-position: center center;
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
 }
 
 a {
      font-family: url('../font/JetBrainsMono-Light.ttf');
-} 
+}
 
 .form {
      background-color: transparent;
      padding: 40px;
      max-width: 400px;
-     border-radius: 10px;
-     background-color: #9e0731;
+     border-radius: 20px;
+     backdrop-filter: blur(10px);
      margin: 0 auto;
      z-index: 1;
      filter: alpha(opacity=70);
@@ -28,50 +36,65 @@ a {
 
 .input {
      margin: bottom 15px;
-     font-family: "Roboto", sans-serif;
+     font-family: "Dosis-ExtraLight";
      width: 100%;
      padding: 10px;
      box-sizing: border-box;
      border: none;
-     color: #525c66;
-     font-size: 1em;
+     color: #fff;
+     font-size: 24px;
      resize: none;
      text-align: start;
 }
 
 .descripcion {
+     font-family: "Dosis-ExtraLight";
      margin: bottom 15px;
-     font-family: "Roboto", sans-serif;
      width: 100%;
-     padding: 30px;
+     height: auto;
+     padding: 15px;
      box-sizing: border-box;
      border: none;
      color: #525c66;
-     font-size: 1em;
+     font-size: 14px;
      resize: none;
      text-align: left;
 }
 
 .pasos {
+     font-family: "Dosis-ExtraLight";
      margin: bottom 15px;
-     font-family: "Roboto", sans-serif;
+     font-family: "Dosis-ExtraLight";
      width: 100%;
-     padding: 30px;
+     padding: 15px;
      box-sizing: border-box;
      border: none;
      color: #525c66;
-     font-size: 1em;
+     font-size: 18px;
      resize: none;
      text-align: left;
 }
 
+.botonPasos {
+     background-color: #000000cc;
+     padding: 5px 25px 5px 25px;
+     border-radius: 10px;
+     border: 0;
+     font-size: 24px;
+     color: white;
+     font-family: "Dosis-ExtraLight";
+     position: center;
+     margin-top: 40px;
+}
+
 .botonCrear {
-     background-color: #0095eb;
+     background-color: #000000cc;
      padding: 10px 45px 10px 45px;
      border: 0;
-     font-size: 1em;
+     font-size: 24px;
+     border-radius: 10px;
      color: white;
-     font-family: "Roboto", sans-serif;
+     font-family: "Dosis-ExtraLight";
      position: center;
      margin-top: 40px;
 }
@@ -81,12 +104,14 @@ a {
 }
 
 .botonVolver {
-     background-color: #9e0731;
+     background-color: #000000cc;
      padding: 4px 25px 5px 25px;
+     border-radius: 10px;
      border: 0;
-     font-size: 1em;
+     justify-content: center;
+     font-size: 24px;
      color: white;
-     font-family: "Roboto", sans-serif;
+     font-family: "Dosis-ExtraLight";
      position: center;
      margin-top: 30px;
 }
@@ -96,27 +121,29 @@ a {
 }
 
 .botonSelect {
-      background-color: white; 
-     backdrop-filter: blur(10px);
+     background-color: #000000cc;
      border: none;
      color: #fff;
+     font-family: "Dosis-ExtraLight";
+     font-size: 24px;
      margin: 2px;
      width: 100px;
      padding: 3px;
      position: fixed;
      margin-left: 12.5rem;
+     border-radius: 10px;
 }
 
 .url {
      margin: bottom 15px;
-     font-family: "Roboto", sans-serif;
+     font-family: "Dosis-ExtraLight";
      width: 100%;
      padding: 10px;
      box-sizing: border-box;
      border: none;
      margin-top: 6%;
      color: #525c66;
-     font-size: 1em;
+     font-size: 14px;
      resize: none;
      text-align: start;
 }
@@ -130,9 +157,8 @@ a {
 .dietAdd {
      padding: 1px;
      border: none;
-     color: #fff;
-     backdrop-filter: blur(10px);
      cursor: pointer;
+     background-color: #000000cc;
 }
 
 .btnDelet {

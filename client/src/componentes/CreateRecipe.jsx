@@ -131,7 +131,7 @@ export const CreateRecipe = () => {
   }, [dispatch])
 
   return (
-    <div>
+    <div className='cR'>
       <Link to='/home'>
         <button className='botonVolver'>volver</button>
       </Link>
@@ -208,7 +208,7 @@ export const CreateRecipe = () => {
             placeholder="Pasos..."
             value={objectStep.step}
             onChange={(e) => handleChangeObjectStep(e)}></textarea>
-          <button type='button' onClick={addStep}>Agregar Paso</button>
+          <button type='button' className='botonPasos' onClick={addStep}>Agregar Paso</button>
           {!!input.steps.length &&
             <div>
               {input.steps.map((e, k) => {
@@ -219,7 +219,6 @@ export const CreateRecipe = () => {
                       <p>{e.number}</p>
                     </div>
                     <div>
-                      <p>Step</p>
                       <p>{e.step}</p>
                       <button type='button' onClick={() => deleteStep(e.number)}>X</button>
                     </div>
