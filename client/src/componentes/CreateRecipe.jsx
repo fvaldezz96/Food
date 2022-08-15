@@ -16,8 +16,8 @@ const validations = (input) => {
   if (!input.healthScore.trim()) {
     errors.healthScore = 'Debe completar con un valor'
   }
-  if(!input.image){
-    errors.image = 'che flata la imagen'
+  if (!input.image) {
+    errors.image = 'Debe completar con una imagen'
   }
   return errors;
 }
@@ -145,12 +145,12 @@ export const CreateRecipe = () => {
             name="name"
             id="name"
             value={input.name}
-          // required
+            required
           />
-          {errors.name && <h4>{errors.name}</h4>}
+          {errors.name && <h4 className='error'>{errors.name}</h4>}
         </div>
-        <div >
-          <label className="" ></label>
+        <div>
+          {/* <label className="" ></label> */}
           <input
             className="url"
             type="url"
@@ -158,80 +158,77 @@ export const CreateRecipe = () => {
             id="image"
             value={input.image}
             placeholder="URL"
+            required
             onChange={(e) => handleChange(e)}
-          // required
           />
+          {errors.image && <h4 className='error'>{errors.image}</h4>}
         </div>
         <br />
         <div>
           <input
-            className="input"
+            className='input'
             onChange={(e) => handleChange(e)}
-            type="number"
-            placeholder="Nivel saludable..."
+            type='number'
+            placeholder='Nivel saludable...'
             value={input.healthScore}
-            name="healthScore"
-            id="healthScore"
+            name='healthScore'
+            id='healthScore'
             min="0"
             max="100"
-          // required
+            required
           />
-          {errors.healthScore && <h4>{errors.healthScore}</h4>}
+          {errors.healthScore && <h4 className='error'>{errors.healthScore}</h4>}
         </div>
         <br />
         <div>
           <textarea
-            className="descripcion"
+            className='descripcion'
             onChange={(e) => handleChange(e)}
             type="text"
-            placeholder="Descripcion..."
+            placeholder='Descripcion...'
             value={input.summary}
             name="summary"
             id="summary"
           />
-          {errors.summary && <h4>{errors.summary}</h4>}
+          {errors.summary && <h4 className='error'>{errors.summary}</h4>}
         </div>
         <br />
         <div>
           <input
-            autoComplete="false"
-            className="pasos"
+            autoComplete='false'
+            className='pasos'
             onChange={(e) => handleChangeObjectStep(e)}
             type={'number'}
             value={objectStep.number}
             name="number"
           />
-          <label>Step</label>
           <textarea
-            name="step"
-            type={'text'}
-            placeholder="Pasos..."
+            className='campoPaso'
+            name='step'
+            type='text'
+            placeholder='pasos...'
             value={objectStep.step}
-            onChange={(e) => handleChangeObjectStep(e)}></textarea>
+            onChange={(e) => handleChangeObjectStep(e)} />
           <button type='button' className='botonPasos' onClick={addStep}>Agregar Paso</button>
           {!!input.steps.length &&
             <div>
               {input.steps.map((e, k) => {
                 return (
                   <div key={k}>
-                    <div>
-                      <p>Number</p>
-                      <p>{e.number}</p>
-                    </div>
-                    <div>
-                      <p>{e.step}</p>
-                      <button type='button' onClick={() => deleteStep(e.number)}>X</button>
+                    <div className='containerSteps'>
+                      <p className='parr'>Number:{e.number}</p>
+                      <p className='parr'>{e.step}</p>
+                      <button className='btnDelete' type='button' onClick={() => deleteStep(e.number)}>X</button>
                     </div>
                   </div>
                 )
               })}
             </div>}
-          {errors.steps && <h4>{errors.steps}</h4>}
+          {errors.steps && <h4 className='error'>{errors.steps}</h4>}
         </div>
         <div>
-          <br />
-          <select className="botonSelect" name='diets' onChange={(e) => handleSelect(e)}>
-            <option value="diets">Dietas</option>
+          <select className='botonSelect' name='diets' onChange={(e) => handleSelect(e)}>
+            <option value='diets'>Dietas</option>
             {
               dietasSeleccion?.map((e, index) => {
                 return (
@@ -244,13 +241,11 @@ export const CreateRecipe = () => {
         {
           input.diets.map((a) => (
             <div className='dietAdd'>
-              <p>{a}</p>
+              <p className='selectP'>{a}</p>
               <button type='button' className='btnDelet' onClick={() => { handleDelete(a) }}>x</button>
             </div>
           ))}
-        <div>
           <button className='botonCrear'>crear</button>
-        </div>
       </form>
     </div>
   )
