@@ -4,8 +4,8 @@
 }
 
 .card {
-   width: 24rem;
-   height: 29rem;
+   width: 18.75rem;
+   height: 22.5rem;
    align-items: center;
    justify-content: center;
    backdrop-filter: blur(10px);
@@ -30,14 +30,14 @@
    font-family: "Dosis-ExtraLight";
    text-align: center;
    color: #fff;
-   font-size: 30px;
+   font-size: 25px;
    padding: 8px;
    align-items: center;
 }
 
 .imagen {
-   width: 22rem;
-   height: 16rem;
+   width: 15.625rem;
+   height: 10.625rem;
    border-radius: 25px;
    position: center;
    padding: 12px;
