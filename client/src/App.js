@@ -3,6 +3,7 @@ import { Landing } from './componentes/Landing';
 import { Home } from './componentes/Home';
 import { CreateRecipe } from './componentes/CreateRecipe';
 import { DetailRecipe } from './componentes/DetailRecipe';
+import './App.css';
 
 export default function App() {
   return (
@@ -16,8 +17,5 @@ export default function App() {
         </Switch>
       </div>
     </BrowserRouter>
-
-  );
+  )
 }
-
-

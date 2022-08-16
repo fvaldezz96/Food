@@ -18,10 +18,12 @@
 }
 
 .number {
-   background-color: #000000cc;
+   background-color: #fff;
    font-weight: 650;
    font-size: large;
+   border-radius: 60px;
    border: none;
+   width: 18px;
    margin: 1em;
    transition: transform .2s;
 }

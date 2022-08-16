@@ -44,10 +44,12 @@
 
 .botonIr {
      background-color: transparent !important;
-     height: 30px;
+     height: 25px;
+     padding: 10px;
+     margin-bottom: 16px;
      font-family: "Dosis-ExtraLight";
      border-radius: 10px;
-     font-size: 23px;
+     font-size: 18px;
      border: none;
      cursor: pointer;
      color: white;

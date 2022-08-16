@@ -87,7 +87,6 @@ export const Home = () => {
           <button className='navs' onClick={(e) => { handleClick(e) }}>
             Actualizar
           </button>
-
           <SearchBar className='navs' />
         </div>
       </div>
