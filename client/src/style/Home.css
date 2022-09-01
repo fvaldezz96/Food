@@ -28,6 +28,7 @@
 .h {
    background-image: url('../assets/imageAmburgesa.jpg');
    background-position: center center;
+   backdrop-filter: blur(10px);
    background-repeat: no-repeat;
    background-attachment: fixed;
    background-size: cover;

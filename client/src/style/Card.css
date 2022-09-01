@@ -8,29 +8,21 @@
    height: 22.5rem;
    align-items: center;
    justify-content: center;
-   backdrop-filter: blur(10px);
-   display: flex;
+   background-color: #000000cd;
    flex-direction: column;
    margin: 2rem 0;
    border-radius: 12px;
    margin-top: 0;
    padding: 2rem 0;
    text-align: center;
-   border: solid 0.1px;
-   border-color: black;
-   transition: transform .2s;
-}
 
-.card:hover {
-   transform: scale(1.1);
 }
 
 .name {
-   margin-bottom: 30px;
    font-family: "Dosis-ExtraLight";
    text-align: center;
    color: #fff;
-   font-size: 25px;
+   font-size: 27px;
    padding: 8px;
    align-items: center;
 }
@@ -41,28 +33,28 @@
    border-radius: 25px;
    position: center;
    padding: 12px;
-   margin-bottom: 60px;
-   z-index: 0;
+   transition: transform 0.6s;
+}
+
+.imagen:hover {
+   transform: scale(1.05);
 }
 
 .diet {
-   font-size: 20px;
+   font-size: 19px;
    align-items: center;
-   position: absolute;
    color: #fff;
-   margin: 6px;
+   margin: auto;
    font-family: "Dosis-ExtraLight";
-   bottom: 40px;
-   left: 0px;
-   right: 0px;
+   margin-top: 1rem;
 }
 
-.nivel {
+.nivelSaludable {
    align-items: center;
-   position: absolute;
+   justify-content: center;
+   font-size: 18px;
    font-family: "Dosis-ExtraLight";
-   bottom: 10px;
    color: #fff;
-   left: 0px;
-   right: 0px;
+   margin: auto;
+   margin-top: 1rem;
 }
